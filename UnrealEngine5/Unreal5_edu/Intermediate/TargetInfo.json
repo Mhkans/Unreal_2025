@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Unreal5_edu",
+			"Path": "..\\Source\\Unreal5_edu.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "Unreal5_eduEditor",
+			"Path": "..\\Source\\Unreal5_eduEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}
