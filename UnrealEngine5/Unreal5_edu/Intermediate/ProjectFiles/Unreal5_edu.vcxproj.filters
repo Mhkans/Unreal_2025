@@ -42,6 +42,15 @@
     <Filter Include="Source\Unreal5_edu\Private">
       <UniqueIdentifier>{8C9F32CE-A29A-3036-924D-DE0E2F60DF31}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyCharacter.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyGameModeBase.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyPlayerController.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyTutoActor.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
@@ -51,6 +60,15 @@
     <Filter Include="Source\Unreal5_edu\Public">
       <UniqueIdentifier>{6C1867F4-85CB-3DEF-83EF-653F5ECBABFB}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyCharacter.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameModeBase.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyPlayerController.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyTutoActor.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>

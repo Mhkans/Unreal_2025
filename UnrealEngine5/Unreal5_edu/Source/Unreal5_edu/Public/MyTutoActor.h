@@ -22,5 +22,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+private:
+	UPROPERTY()
+	UStaticMeshComponent* _mesh;
 
+	float _rotationSpeed = 100.0f;
 };
