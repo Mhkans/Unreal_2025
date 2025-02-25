@@ -25,20 +25,53 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
+	UFUNCTION()
 	void Move(const struct FInputActionValue& value);
+	UFUNCTION()
+	void Look(const struct FInputActionValue& value);
+	UFUNCTION()
+	void JumpA(const struct FInputActionValue& value);
+	UFUNCTION()
+	void Attack(const struct FInputActionValue& value);
+
+	UFUNCTION()
+	void TestDelegate();
+	UFUNCTION()
+	int32 TestDelegate2(int32 a, int32 b);
+
+	UFUNCTION()
+	void AttackEnd(class UAnimMontage* montage, bool bInterrupted);
 private:
 	UPROPERTY(EditAnywhere, Category = "Speed")
 	float _moveSpeed = 10.0f;
 	UPROPERTY(EditAnywhere, Category = "Speed")
 	float _rotationSpeed = 30.0f;
 
+	UPROPERTY(EditAnywhere, Category = "Speed")
+	float _jumpSpeed = 1000.0f;
+
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
-	class UCameraComponent* _camera;
+	class UInputAction* _lookAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
+	class UInputAction* _jumpAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attack", meta = (AllowprivateAccess = "true"))
+	class UInputAction* _attackAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowprivateAccess = "true"))
+	bool _isAttack = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowprivateAccess = "true"))
+	class UCameraComponent* _camera;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowprivateAccess = "true"))
 	class USpringArmComponent* _springArm;
+
+	UPROPERTY()
+	class UMyAnimInstance* _animInstance;
 };

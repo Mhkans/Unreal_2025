@@ -9,10 +9,22 @@
 #include "UObject/ScriptMacros.h"
 
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
+class UAnimMontage;
+struct FInputActionValue;
 #ifdef UNREAL5_EDU_MyCharacter_generated_h
 #error "MyCharacter.generated.h already included, missing '#pragma once' in MyCharacter.h"
 #endif
 #define UNREAL5_EDU_MyCharacter_generated_h
+
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execAttackEnd); \
+	DECLARE_FUNCTION(execTestDelegate2); \
+	DECLARE_FUNCTION(execTestDelegate); \
+	DECLARE_FUNCTION(execAttack); \
+	DECLARE_FUNCTION(execJumpA); \
+	DECLARE_FUNCTION(execLook); \
+	DECLARE_FUNCTION(execMove);
+
 
 #define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_INCLASS_NO_PURE_DECLS \
 private: \
@@ -39,6 +51,7 @@ public: \
 #define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
 	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_INCLASS_NO_PURE_DECLS \
 	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_ENHANCED_CONSTRUCTORS \
 private: \

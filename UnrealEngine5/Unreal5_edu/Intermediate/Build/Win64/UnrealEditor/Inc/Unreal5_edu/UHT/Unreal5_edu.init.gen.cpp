@@ -7,23 +7,27 @@
 #include "UObject/GeneratedCppIncludes.h"
 PRAGMA_DISABLE_DEPRECATION_WARNINGS
 void EmptyLinkFunctionForGeneratedCodeUnreal5_edu_init() {}
+	UNREAL5_EDU_API UFunction* Z_Construct_UDelegateFunction_Unreal5_edu_AnimDelegateTest3__DelegateSignature();
 	static FPackageRegistrationInfo Z_Registration_Info_UPackage__Script_Unreal5_edu;
 	FORCENOINLINE UPackage* Z_Construct_UPackage__Script_Unreal5_edu()
 	{
 		if (!Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton)
 		{
+			static UObject* (*const SingletonFuncArray[])() = {
+				(UObject* (*)())Z_Construct_UDelegateFunction_Unreal5_edu_AnimDelegateTest3__DelegateSignature,
+			};
 			static const UECodeGen_Private::FPackageParams PackageParams = {
 				"/Script/Unreal5_edu",
-				nullptr,
-				0,
+				SingletonFuncArray,
+				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x4F0D166F,
-				0x5135EDB7,
+				0x95A506B8,
+				0x46EFD026,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x4F0D166F, 0x5135EDB7));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x95A506B8, 0x46EFD026));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

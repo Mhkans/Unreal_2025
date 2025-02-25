@@ -262,6 +262,9 @@
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <ClInclude Include="..\..\Source\Unreal5_edu\Unreal5_edu.h"/>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyAnimInstance.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyCharacter.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -277,6 +280,7 @@
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyTutoPawn.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyCharacter.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameModeBase.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyPlayerController.h"/>
