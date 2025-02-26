@@ -33,10 +33,13 @@ void AMyCharacter::BeginPlay()
 	Super::BeginPlay();
 	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());
 
-	_animInstance->_attackStart.BindUObject(this, &AMyCharacter::TestDelegate);
-	_animInstance->_attackStart2.BindUObject(this, &AMyCharacter::TestDelegate2);
-	_animInstance->_attackStart3.AddDynamic(this, &AMyCharacter::TestDelegate);
+	//_animInstance->_attackStart.BindUObject(this, &AMyCharacter::TestDelegate);
+	//_animInstance->_attackStart2.BindUObject(this, &AMyCharacter::TestDelegate2);
+	//_animInstance->_attackStart3.AddDynamic(this, &AMyCharacter::TestDelegate);
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyCharacter::AttackEnd);
+	_animInstance->_info.AddUObject(this, &AMyCharacter::Attack_Hit);
+	//_animInstance->_info.Remove();
+
 }
 
 // Called every frame
@@ -71,6 +74,9 @@ void AMyCharacter::Move(const FInputActionValue& value)
 			FVector forWard = GetActorForwardVector();
 			FVector right = GetActorRightVector();
 			
+			_vertical = moveVector.Y;
+			_horizontal = moveVector.X;
+
 			AddMovementInput(forWard, moveVector.Y* _moveSpeed);
 			AddMovementInput(right, moveVector.X *_moveSpeed);
 		}
@@ -100,7 +106,9 @@ void AMyCharacter::Attack(const FInputActionValue& value)
 	bool isPressed= value.Get<bool>();
 	if (Controller != nullptr && isPressed) {
 		_isAttack = true;
+		_curAttackSection = (_curAttackSection) % 3 + 1;
 		_animInstance->PlayAnimMontage();
+		_animInstance->JumpToSection(_curAttackSection);
 		/*auto animInstance = GetMesh()->GetAnimInstance();
 		auto myAnimInstance = Cast<UMyAnimInstance>(animInstance);
 		if (myAnimInstance != nullptr) {
@@ -123,5 +131,46 @@ int32 AMyCharacter::TestDelegate2(int32 a, int32 b)
 void AMyCharacter::AttackEnd(UAnimMontage* montage, bool bInterrupted)
 {
 	_isAttack = false;
+}
+
+void AMyCharacter::Attack_Hit()
+{
+	FHitResult hitResult;
+	FCollisionQueryParams params(NAME_None, false, this);
+	FRotator rotator=GetActorRotation();
+	rotator.Add(0, 90, 90);
+	FQuat quaternion = FQuat(rotator);
+
+	float attackRange = 500.0f;
+	float attackRadius = 100.0f;
+
+	bool bResult = GetWorld()->SweepSingleByChannel(
+		OUT hitResult,
+		GetActorLocation(),
+		GetActorLocation() + GetActorForwardVector() * attackRange,
+		FQuat::Identity,
+		ECC_GameTraceChannel2,
+		FCollisionShape::MakeCapsule(attackRadius, attackRange),
+		params
+	);
+
+	FColor drawColor = FColor::Green;
+
+	if (bResult && hitResult.GetActor()->IsValidLowLevel())
+	{
+		drawColor = FColor::Red;
+	}
+
+	DrawDebugCapsule(
+		GetWorld(),
+		GetActorLocation() + GetActorForwardVector() * attackRange*0.5f,
+		attackRange * 0.5f,
+		attackRadius,
+		quaternion,
+		drawColor,
+		false,
+		10.0f
+	);
+	
 }
 

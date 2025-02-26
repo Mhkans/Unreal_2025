@@ -17,6 +17,7 @@ struct FInputActionValue;
 #define UNREAL5_EDU_MyCharacter_generated_h
 
 #define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_12_RPC_WRAPPERS_NO_PURE_DECLS \
+	DECLARE_FUNCTION(execAttack_Hit); \
 	DECLARE_FUNCTION(execAttackEnd); \
 	DECLARE_FUNCTION(execTestDelegate2); \
 	DECLARE_FUNCTION(execTestDelegate); \
