@@ -6,10 +6,11 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputActionValue.h"
-#include"MyAnimInstance.h"
+#include "MyAnimInstance.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "Engine/DamageEvents.h"
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
@@ -137,20 +138,25 @@ void AMyCharacter::Attack_Hit()
 {
 	FHitResult hitResult;
 	FCollisionQueryParams params(NAME_None, false, this);
-	FRotator rotator=GetActorRotation();
-	rotator.Add(0, 90, 90);
-	FQuat quaternion = FQuat(rotator);
+
+	FVector forward = GetActorForwardVector();
+	FQuat quat = FQuat::FindBetweenVectors(FVector(0, 0, 1), forward);//두 벡터 사이의 최단회전을 반환
 
 	float attackRange = 500.0f;
 	float attackRadius = 100.0f;
 
+	//start 에서 end까지 쓸고 지나가는 형태의 충돌 판정
+	FVector Center = GetActorLocation() + forward * attackRange * 0.5f; //바라보는 방향의 중심설정
+	FVector Start = GetActorLocation() + forward * attackRange * 0.5f; //충돌체의 중심 start
+	FVector End = GetActorLocation() + forward * attackRange * 0.5f; //충돌체의 중심 end
+
 	bool bResult = GetWorld()->SweepSingleByChannel(
 		OUT hitResult,
-		GetActorLocation(),
-		GetActorLocation() + GetActorForwardVector() * attackRange,
-		FQuat::Identity,
+		Start,
+		End,
+		quat,
 		ECC_GameTraceChannel2,
-		FCollisionShape::MakeCapsule(attackRadius, attackRange),
+		FCollisionShape::MakeCapsule(attackRadius, attackRange *0.5f),
 		params
 	);
 
@@ -159,18 +165,38 @@ void AMyCharacter::Attack_Hit()
 	if (bResult && hitResult.GetActor()->IsValidLowLevel())
 	{
 		drawColor = FColor::Red;
+		AMyCharacter* victim = Cast<AMyCharacter>(hitResult.GetActor());
+		if (victim) {
+			FDamageEvent damageEvent;
+			victim->TakeDamage(_atk, damageEvent, GetController(), this);
+		}
 	}
 
 	DrawDebugCapsule(
 		GetWorld(),
-		GetActorLocation() + GetActorForwardVector() * attackRange*0.5f,
+		Center,
 		attackRange * 0.5f,
 		attackRadius,
-		quaternion,
+		quat,
 		drawColor,
 		false,
-		10.0f
+		3.0f
 	);
 	
+}
+
+float AMyCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
+{
+	//방어력 다 깎고 실제입을 데미지 반환
+	_hp -= Damage;
+	if (_hp < 0.0f) {
+		_hp = 0.0f;
+	}
+	FString attackName = DamageCauser->GetName();
+	FString victimName = GetName();
+
+	UE_LOG(LogTemp, Warning, TEXT("%s inflicted %.2f damage to %s."), *attackName, Damage, *victimName);
+
+	return Damage;
 }
 

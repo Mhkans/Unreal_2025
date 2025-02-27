@@ -44,9 +44,9 @@ public:
 
 	float My_Vertical() { return _vertical; }
 	float My_Horizontal() { return _horizontal; }
-	
-	UFUNCTION()
+
 	void Attack_Hit();
+	virtual float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 private:
 	UPROPERTY(EditAnywhere, Category = "Speed")
 	float _moveSpeed = 10.0f;
@@ -85,5 +85,9 @@ private:
 
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
+
+	float _hp = 100.0f;
+	float _atk = 10.0f;
+
 	
 };

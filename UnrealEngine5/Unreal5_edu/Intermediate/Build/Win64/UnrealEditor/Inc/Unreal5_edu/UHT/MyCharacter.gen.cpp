@@ -68,35 +68,6 @@ DEFINE_FUNCTION(AMyCharacter::execAttack)
 }
 // End Class AMyCharacter Function Attack
 
-// Begin Class AMyCharacter Function Attack_Hit
-struct Z_Construct_UFunction_AMyCharacter_Attack_Hit_Statics
-{
-#if WITH_METADATA
-	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
-		{ "ModuleRelativePath", "Public/MyCharacter.h" },
-	};
-#endif // WITH_METADATA
-	static const UECodeGen_Private::FFunctionParams FuncParams;
-};
-const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_AMyCharacter_Attack_Hit_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_AMyCharacter, nullptr, "Attack_Hit", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_AMyCharacter_Attack_Hit_Statics::Function_MetaDataParams), Z_Construct_UFunction_AMyCharacter_Attack_Hit_Statics::Function_MetaDataParams) };
-UFunction* Z_Construct_UFunction_AMyCharacter_Attack_Hit()
-{
-	static UFunction* ReturnFunction = nullptr;
-	if (!ReturnFunction)
-	{
-		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_AMyCharacter_Attack_Hit_Statics::FuncParams);
-	}
-	return ReturnFunction;
-}
-DEFINE_FUNCTION(AMyCharacter::execAttack_Hit)
-{
-	P_FINISH;
-	P_NATIVE_BEGIN;
-	P_THIS->Attack_Hit();
-	P_NATIVE_END;
-}
-// End Class AMyCharacter Function Attack_Hit
-
 // Begin Class AMyCharacter Function AttackEnd
 struct Z_Construct_UFunction_AMyCharacter_AttackEnd_Statics
 {
@@ -370,7 +341,6 @@ void AMyCharacter::StaticRegisterNativesAMyCharacter()
 	UClass* Class = AMyCharacter::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "Attack", &AMyCharacter::execAttack },
-		{ "Attack_Hit", &AMyCharacter::execAttack_Hit },
 		{ "AttackEnd", &AMyCharacter::execAttackEnd },
 		{ "JumpA", &AMyCharacter::execJumpA },
 		{ "Look", &AMyCharacter::execLook },
@@ -462,7 +432,6 @@ struct Z_Construct_UClass_AMyCharacter_Statics
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_AMyCharacter_Attack, "Attack" }, // 1776075856
-		{ &Z_Construct_UFunction_AMyCharacter_Attack_Hit, "Attack_Hit" }, // 1054053116
 		{ &Z_Construct_UFunction_AMyCharacter_AttackEnd, "AttackEnd" }, // 2796530502
 		{ &Z_Construct_UFunction_AMyCharacter_JumpA, "JumpA" }, // 678407342
 		{ &Z_Construct_UFunction_AMyCharacter_Look, "Look" }, // 1523983814
@@ -545,10 +514,10 @@ AMyCharacter::~AMyCharacter() {}
 struct Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMyCharacter, AMyCharacter::StaticClass, TEXT("AMyCharacter"), &Z_Registration_Info_UClass_AMyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCharacter), 343141941U) },
+		{ Z_Construct_UClass_AMyCharacter, AMyCharacter::StaticClass, TEXT("AMyCharacter"), &Z_Registration_Info_UClass_AMyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCharacter), 3367804537U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_1605561358(TEXT("/Script/Unreal5_edu"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_236007449(TEXT("/Script/Unreal5_edu"),
 	Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
