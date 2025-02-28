@@ -17,9 +17,11 @@ ENGINE_API UClass* Z_Construct_UClass_UCameraComponent_NoRegister();
 ENGINE_API UClass* Z_Construct_UClass_USpringArmComponent_NoRegister();
 ENHANCEDINPUT_API UClass* Z_Construct_UClass_UInputAction_NoRegister();
 ENHANCEDINPUT_API UScriptStruct* Z_Construct_UScriptStruct_FInputActionValue();
+UMG_API UClass* Z_Construct_UClass_UWidgetComponent_NoRegister();
 UNREAL5_EDU_API UClass* Z_Construct_UClass_AMyCharacter();
 UNREAL5_EDU_API UClass* Z_Construct_UClass_AMyCharacter_NoRegister();
 UNREAL5_EDU_API UClass* Z_Construct_UClass_UMyAnimInstance_NoRegister();
+UNREAL5_EDU_API UClass* Z_Construct_UClass_UMyStatComponent_NoRegister();
 UPackage* Z_Construct_UPackage__Script_Unreal5_edu();
 // End Cross Module References
 
@@ -363,18 +365,6 @@ struct Z_Construct_UClass_AMyCharacter_Statics
 		{ "IncludePath", "MyCharacter.h" },
 		{ "ModuleRelativePath", "Public/MyCharacter.h" },
 	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__moveSpeed_MetaData[] = {
-		{ "Category", "Speed" },
-		{ "ModuleRelativePath", "Public/MyCharacter.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__rotationSpeed_MetaData[] = {
-		{ "Category", "Speed" },
-		{ "ModuleRelativePath", "Public/MyCharacter.h" },
-	};
-	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__jumpSpeed_MetaData[] = {
-		{ "Category", "Speed" },
-		{ "ModuleRelativePath", "Public/MyCharacter.h" },
-	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__moveAction_MetaData[] = {
 		{ "AllowprivateAccess", "true" },
 		{ "Category", "Input" },
@@ -415,10 +405,19 @@ struct Z_Construct_UClass_AMyCharacter_Statics
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__animInstance_MetaData[] = {
 		{ "ModuleRelativePath", "Public/MyCharacter.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__statComponent_MetaData[] = {
+		{ "AllowprivateAccess", "true" },
+		{ "Category", "Stat" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/MyCharacter.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__HPWidget_MetaData[] = {
+		{ "AllowprivateAccess", "true" },
+		{ "Category", "UI" },
+		{ "EditInline", "true" },
+		{ "ModuleRelativePath", "Public/MyCharacter.h" },
+	};
 #endif // WITH_METADATA
-	static const UECodeGen_Private::FFloatPropertyParams NewProp__moveSpeed;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp__rotationSpeed;
-	static const UECodeGen_Private::FFloatPropertyParams NewProp__jumpSpeed;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__moveAction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__lookAction;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__jumpAction;
@@ -428,6 +427,8 @@ struct Z_Construct_UClass_AMyCharacter_Statics
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__camera;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__springArm;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__animInstance;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp__statComponent;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp__HPWidget;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
@@ -445,9 +446,6 @@ struct Z_Construct_UClass_AMyCharacter_Statics
 	};
 	static const UECodeGen_Private::FClassParams ClassParams;
 };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__moveSpeed = { "_moveSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _moveSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__moveSpeed_MetaData), NewProp__moveSpeed_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__rotationSpeed = { "_rotationSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _rotationSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__rotationSpeed_MetaData), NewProp__rotationSpeed_MetaData) };
-const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__jumpSpeed = { "_jumpSpeed", nullptr, (EPropertyFlags)0x0040000000000001, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _jumpSpeed), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__jumpSpeed_MetaData), NewProp__jumpSpeed_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__moveAction = { "_moveAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _moveAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__moveAction_MetaData), NewProp__moveAction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__lookAction = { "_lookAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _lookAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__lookAction_MetaData), NewProp__lookAction_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__jumpAction = { "_jumpAction", nullptr, (EPropertyFlags)0x0040000000000015, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _jumpAction), Z_Construct_UClass_UInputAction_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__jumpAction_MetaData), NewProp__jumpAction_MetaData) };
@@ -460,10 +458,9 @@ const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_AMyCharacter_Sta
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__camera = { "_camera", nullptr, (EPropertyFlags)0x004000000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _camera), Z_Construct_UClass_UCameraComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__camera_MetaData), NewProp__camera_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__springArm = { "_springArm", nullptr, (EPropertyFlags)0x004000000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _springArm), Z_Construct_UClass_USpringArmComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__springArm_MetaData), NewProp__springArm_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__animInstance = { "_animInstance", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _animInstance), Z_Construct_UClass_UMyAnimInstance_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__animInstance_MetaData), NewProp__animInstance_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__statComponent = { "_statComponent", nullptr, (EPropertyFlags)0x004000000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _statComponent), Z_Construct_UClass_UMyStatComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__statComponent_MetaData), NewProp__statComponent_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_AMyCharacter_Statics::NewProp__HPWidget = { "_HPWidget", nullptr, (EPropertyFlags)0x004000000008001d, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(AMyCharacter, _HPWidget), Z_Construct_UClass_UWidgetComponent_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__HPWidget_MetaData), NewProp__HPWidget_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyCharacter_Statics::PropPointers[] = {
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__moveSpeed,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__rotationSpeed,
-	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__jumpSpeed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__moveAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__lookAction,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__jumpAction,
@@ -472,6 +469,8 @@ const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_AMyCharac
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__camera,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__springArm,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__animInstance,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__statComponent,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_AMyCharacter_Statics::NewProp__HPWidget,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_AMyCharacter_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_AMyCharacter_Statics::DependentSingletons[])() = {
@@ -514,10 +513,10 @@ AMyCharacter::~AMyCharacter() {}
 struct Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_AMyCharacter, AMyCharacter::StaticClass, TEXT("AMyCharacter"), &Z_Registration_Info_UClass_AMyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCharacter), 3367804537U) },
+		{ Z_Construct_UClass_AMyCharacter, AMyCharacter::StaticClass, TEXT("AMyCharacter"), &Z_Registration_Info_UClass_AMyCharacter, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(AMyCharacter), 1128974077U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_236007449(TEXT("/Script/Unreal5_edu"),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_1989059692(TEXT("/Script/Unreal5_edu"),
 	Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyCharacter_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);

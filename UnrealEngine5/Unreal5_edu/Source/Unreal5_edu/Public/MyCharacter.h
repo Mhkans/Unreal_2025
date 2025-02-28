@@ -34,6 +34,7 @@ public:
 	UFUNCTION()
 	void Attack(const struct FInputActionValue& value);
 
+
 	UFUNCTION()
 	void TestDelegate();
 	UFUNCTION()
@@ -47,16 +48,10 @@ public:
 
 	void Attack_Hit();
 	virtual float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
+
+	void AddHp(float amount);
 private:
-	UPROPERTY(EditAnywhere, Category = "Speed")
-	float _moveSpeed = 10.0f;
-	UPROPERTY(EditAnywhere, Category = "Speed")
-	float _rotationSpeed = 30.0f;
-
-	UPROPERTY(EditAnywhere, Category = "Speed")
-	float _jumpSpeed = 1000.0f;
-
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;
 
@@ -81,13 +76,18 @@ private:
 	UPROPERTY()
 	class UMyAnimInstance* _animInstance;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat", meta = (AllowprivateAccess = "true"))
+	class UMyStatComponent* _statComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowprivateAccess = "true"))
+	class UWidgetComponent* _HPWidget;
+
+private:
 	int32 _curAttackSection = 1;
 
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
 
-	float _hp = 100.0f;
-	float _atk = 10.0f;
 
 	
 };
