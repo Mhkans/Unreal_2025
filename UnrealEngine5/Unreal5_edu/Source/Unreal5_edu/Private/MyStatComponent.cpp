@@ -51,7 +51,7 @@ int32 UMyStatComponent::AddCurHp(float amount)
 	}
 	auto actor = GetOwner();
 
-	UE_LOG(LogTemp, Warning, TEXT("Name : %s , HP : %d"), *actor->GetName(), _curHp);
+	UE_LOG(LogTemp, Warning, TEXT("Vic Name : %s , HP : %d"), *actor->GetName(), _curHp);
 
 	float ratio = _curHp / (float)_maxHp;
 	if (_hpChanged.IsBound()) {

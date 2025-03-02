@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "MyPlayer.h"
 #include "MyAnimInstance.h"
 #include "MyCharacter.h"
 #include "GameFramework/PawnMovementComponent.h"
@@ -37,7 +37,7 @@ void UMyAnimInstance::AnimNotify_Attack_Hit()
 void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	auto pawn = TryGetPawnOwner();
-	AMyCharacter* character = Cast<AMyCharacter>(pawn);
+	AMyPlayer* character = Cast<AMyPlayer>(pawn);
 	if (character != nullptr) {
 		_vertical = character->My_Vertical();
 		_horizontal = character->My_Horizontal();

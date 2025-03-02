@@ -1,10 +1,12 @@
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyGameInstance.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyAnimInstance.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyPlayerController.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyStatComponent.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyGameModeBase.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyTutoActor.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyTutoPawn.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyItem.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyHPBar.h
-D:\2025 Unreal\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyCharacter.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyEnemy.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyPlayer.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyAnimInstance.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyTutoPawn.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyGameInstance.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyCharacter.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyStatComponent.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyHPBar.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyGameModeBase.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyItem.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyTutoActor.h
+D:\GitHub\Unreal_2025\UnrealEngine5\Unreal5_edu\Source\Unreal5_edu\Public\MyPlayerController.h

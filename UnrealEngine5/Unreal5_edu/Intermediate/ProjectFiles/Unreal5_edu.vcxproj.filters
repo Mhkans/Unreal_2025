@@ -11,6 +11,7 @@
     <None Include="..\..\Source\Unreal5_eduEditor.Target.cs">
       <Filter>Source</Filter>
     </None>
+    <None Include="..\..\.gitignore" />
     <None Include="..\..\.vsconfig" />
     <Filter Include="Config">
       <UniqueIdentifier>{FA535FFB-25E1-3D20-B416-52F9BE21E06E}</UniqueIdentifier>
@@ -48,6 +49,9 @@
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyCharacter.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyEnemy.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyGameInstance.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
@@ -58,6 +62,9 @@
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyItem.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyPlayer.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyPlayerController.cpp">
@@ -81,6 +88,9 @@
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyCharacter.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyEnemy.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameInstance.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
@@ -91,6 +101,9 @@
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyItem.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyPlayer.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyPlayerController.h">
