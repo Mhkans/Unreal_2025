@@ -21,7 +21,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAnimDelegateTest3);
 
 //
 
-DECLARE_MULTICAST_DELEGATE(AttackerInfo);
+DECLARE_MULTICAST_DELEGATE(FSendAttackerInfo);
 
 UCLASS()
 class UNREAL5_EDU_API UMyAnimInstance : public UAnimInstance
@@ -30,10 +30,11 @@ class UNREAL5_EDU_API UMyAnimInstance : public UAnimInstance
 	
 public:
 	UMyAnimInstance();
+	virtual void NativeInitializeAnimation() override;
 	virtual void NativeUpdateAnimation(float DeltaSeconds);
 
 	UFUNCTION()
-	void PlayAnimMontage();
+	void PlayAnimMontage_Attack();
 	UFUNCTION()
 	void JumpToSection(int32 sectionIndex);
 
@@ -45,20 +46,22 @@ public:
 	AnimDelegateTest2 _attackStart2;
 	UPROPERTY()
 	FAnimDelegateTest3 _attackStart3;
-
-	AttackerInfo _info;
+	FSendAttackerInfo OnSendAttackerInfo; 
 private:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pawn", meta = (AllowprivateAccess = "true"))
-	float _speed = 0.0f;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Pawn", meta = (AllowprivateAccess = "true"))
-	bool _isFalling = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
-	class UAnimMontage* _animMontage;
+	class UAnimMontage* _animMontage_Attack;
 	
+	UPROPERTY()
+	class AMyPlayer* _player;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
 	float _vertical;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
 	float _horizontal;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
+	float _speed = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
+	bool _isFalling = false;
 };

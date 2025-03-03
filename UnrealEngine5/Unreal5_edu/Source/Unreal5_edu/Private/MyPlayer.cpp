@@ -19,6 +19,8 @@
 
 AMyPlayer::AMyPlayer()
 {
+	_level = 3;
+
 	_springArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	_camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	_springArm->SetupAttachment(GetCapsuleComponent());
@@ -26,13 +28,15 @@ AMyPlayer::AMyPlayer()
 
 	_springArm->TargetArmLength = 500.0f;
 	_springArm->SetRelativeRotation(FRotator(-35, 0, 0));
+	_springArm->SetRelativeLocation(FVector(-50, 0, 88));
 
 }
 
 void AMyPlayer::BeginPlay()
 {
 	Super::BeginPlay();
-
+	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());		
+	_animInstance->OnSendAttackerInfo.AddUObject(this, &AMyPlayer::Attack_Hit);		
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::AttackEnd);
 
 }
@@ -103,7 +107,7 @@ void AMyPlayer::Attack(const FInputActionValue& value)
 	if (Controller != nullptr && isPressed) {
 		_isAttack = true;
 		_curAttackSection = (_curAttackSection) % 3 + 1;
-		_animInstance->PlayAnimMontage();
+		_animInstance->PlayAnimMontage_Attack();
 		_animInstance->JumpToSection(_curAttackSection);
 	}
 }

@@ -1,47 +1,53 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "MyPlayer.h"
-#include "MyAnimInstance.h"
 #include "MyCharacter.h"
 #include "GameFramework/PawnMovementComponent.h"
 #include "Animation/AnimMontage.h"
+#include "MyAnimInstance.h"
 UMyAnimInstance::UMyAnimInstance()
 {
 
 }
 
-void UMyAnimInstance::PlayAnimMontage()
+void UMyAnimInstance::NativeInitializeAnimation()
 {
-	if (_animMontage == nullptr) { return; }
+	Super::NativeInitializeAnimation();
+	_player = Cast<AMyPlayer>(TryGetPawnOwner());
+}
 
-	if (!Montage_IsPlaying(_animMontage))
+void UMyAnimInstance::PlayAnimMontage_Attack()
+{
+	if (_animMontage_Attack == nullptr) { return; }
+
+	if (!Montage_IsPlaying(_animMontage_Attack))
 	{
 		//_attackStart.Execute();
 		//_attackStart2.Execute(1, 2);
 		//_attackStart3.Broadcast(); //멀티캐스트
-		Montage_Play(_animMontage);
+		Montage_Play(_animMontage_Attack);
 	}
 }
 
 void UMyAnimInstance::JumpToSection(int32 sectionIndex)
 {
 	FName sectionName = FName(*FString::Printf(TEXT("Section%d"), sectionIndex));
-	Montage_JumpToSection(sectionName, _animMontage);
+	Montage_JumpToSection(sectionName, _animMontage_Attack);
 }
 
 void UMyAnimInstance::AnimNotify_Attack_Hit()
 {
-	_info.Broadcast();
+	OnSendAttackerInfo.Broadcast();
 }
 
 void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
-	auto pawn = TryGetPawnOwner();
-	AMyPlayer* character = Cast<AMyPlayer>(pawn);
-	if (character != nullptr) {
-		_vertical = character->My_Vertical();
-		_horizontal = character->My_Horizontal();
-		_speed = character->GetVelocity().Size();
-		_isFalling = character->GetMovementComponent()->IsFalling();
+	Super::NativeUpdateAnimation(DeltaSeconds);
+	
+	if (_player != nullptr) {
+		_vertical = _player->My_Vertical();
+		_horizontal = _player->My_Horizontal();
+		_speed = _player->GetMovementComponent()->Velocity.Size2D();
+		_isFalling = _player->GetMovementComponent()->IsFalling();
 	}
 }

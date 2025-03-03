@@ -18,21 +18,23 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	void TakeEXP(AMyCharacter* victim);
 public:		
 	void Attack_Hit();
+	UFUNCTION()
 	void AttackEnd(class UAnimMontage* montage, bool bInterrupted);
 
 	virtual float TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser) override;
 
 	void AddHp(float amount);
+	const int16& GetLevel() { return _level; }
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowprivateAccess = "true"))
 	bool _isAttack = false;
 
 	UPROPERTY()
-	class UMyAnimInstance* _animInstance;
+	int16 _level;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat", meta = (AllowprivateAccess = "true"))
 	class UMyStatComponent* _statComponent;

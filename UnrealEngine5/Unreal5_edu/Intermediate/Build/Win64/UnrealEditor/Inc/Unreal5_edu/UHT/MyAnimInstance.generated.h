@@ -21,7 +21,7 @@ UNREAL5_EDU_API void FAnimDelegateTest3_DelegateWrapper(const FMulticastScriptDe
 #define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_29_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execAnimNotify_Attack_Hit); \
 	DECLARE_FUNCTION(execJumpToSection); \
-	DECLARE_FUNCTION(execPlayAnimMontage);
+	DECLARE_FUNCTION(execPlayAnimMontage_Attack);
 
 
 #define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_29_INCLASS_NO_PURE_DECLS \

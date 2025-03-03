@@ -6,7 +6,7 @@
 #include "Engine/DataTable.h"
 UMyGameInstance::UMyGameInstance()
 {
-	static ConstructorHelpers::FObjectFinder<UDataTable> dataTable(TEXT("/Script/Engine.DataTable'/Game/Data/MyStatTable.MyStatTable'"));
+	static ConstructorHelpers::FObjectFinder<UDataTable> dataTable(TEXT("/Script/Engine.DataTable'/Game/Data/MyDataTable.MyDataTable'"));
 
 	if (dataTable.Succeeded()) {
 		_statTable = dataTable.Object;
@@ -23,6 +23,5 @@ FMyStatData UMyGameInstance::GetStat_Level(int32 level)
 {
 	FString LevelName = "Level_" + FString::FromInt(level);
 	auto row = _statTable->FindRow<FMyStatData>(*LevelName, TEXT(""));
-	UE_LOG(LogTemp, Error, TEXT("LEVEL : %d , HP : %d , ATK : %d"), row->level, row->hp, row->atk);
 	return *row;
 }

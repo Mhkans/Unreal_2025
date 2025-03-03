@@ -27,7 +27,7 @@ AMyCharacter::AMyCharacter()
 
 	_HPWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBar"));
 	_HPWidget->SetupAttachment(GetMesh());
-	_HPWidget->SetWidgetSpace(EWidgetSpace::World);
+	_HPWidget->SetWidgetSpace(EWidgetSpace::Screen);
 	_HPWidget->SetRelativeLocation(FVector(0, 0, 250));
 
 	static ConstructorHelpers::FClassFinder<UMyHPBar> hpBarClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrints/BP_MyHBBar.BP_MyHBBar_C'"));
@@ -40,16 +40,17 @@ AMyCharacter::AMyCharacter()
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());
-
-	
-	_animInstance->_info.AddUObject(this, &AMyCharacter::Attack_Hit);
-
-	auto HPBar = Cast<UMyHPBar>(_HPWidget->GetWidget());
+	auto HPBar = Cast<UMyHPBar>(_HPWidget->GetUserWidgetObject());
 	if (HPBar) {
 		_statComponent->_hpChanged.AddUObject(HPBar, &UMyHPBar::SetHpBarValue);
 	}
+	
+}
 
+void AMyCharacter::TakeEXP(AMyCharacter* victim)
+{
+	auto EXP = victim->_statComponent->GetEXP();
+	_statComponent->AddEXP(EXP);
 }
 
 void AMyCharacter::Attack_Hit()
@@ -89,6 +90,9 @@ void AMyCharacter::Attack_Hit()
 			UE_LOG(LogTemp, Warning, TEXT("Att Name : %s , HP : %d"), *GetName(), _statComponent->GetCurHp());
 
 			victim->TakeDamage(_statComponent->GetAtk(), damageEvent, GetController(), this);
+			if (victim->_statComponent->IsDead()) {
+				TakeEXP(victim);
+			}
 		}
 	}
 

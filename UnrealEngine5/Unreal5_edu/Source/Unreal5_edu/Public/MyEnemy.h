@@ -9,6 +9,7 @@
 /**
  * 
  */
+
 UCLASS()
 class UNREAL5_EDU_API AMyEnemy : public AMyCharacter
 {
@@ -16,12 +17,14 @@ class UNREAL5_EDU_API AMyEnemy : public AMyCharacter
 	
 public:
 	AMyEnemy();
-
 private:
 	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+	void PlayDeadMotion();
 
 public:
 
 private:
-
+	UPROPERTY()
+	class UMyEnemyAnimInstance* _animInstance;
 };

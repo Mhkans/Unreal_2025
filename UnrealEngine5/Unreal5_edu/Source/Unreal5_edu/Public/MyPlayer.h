@@ -17,8 +17,6 @@ class UNREAL5_EDU_API AMyPlayer : public AMyCharacter
 public:
 	AMyPlayer();
 
-	virtual void Tick(float DeltaTime) override;
-
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 	UFUNCTION()
 	void Move(const struct FInputActionValue& value);
@@ -36,7 +34,7 @@ public:
 	float My_Horizontal() { return _horizontal; }
 private:
 	virtual void BeginPlay() override;
-
+	virtual void Tick(float DeltaTime) override;
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;
@@ -55,7 +53,8 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowprivateAccess = "true"))
 	class USpringArmComponent* _springArm;
-
+	UPROPERTY()
+	class UMyAnimInstance* _animInstance;
 private:
 	int32 _curAttackSection = 1;
 

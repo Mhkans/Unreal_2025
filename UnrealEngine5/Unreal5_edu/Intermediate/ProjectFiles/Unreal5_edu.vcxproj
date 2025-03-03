@@ -67,7 +67,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5EF569A1-808C-3FEF-9B47-0F220B7CFB64}</ProjectGuid>
+    <ProjectGuid>{DE0909EE-13C6-3ACC-A483-E9C98CE169FE}</ProjectGuid>
     <RootNamespace>Unreal5_edu</RootNamespace>
   </PropertyGroup>
   <Import Project="UECommon.props" />
@@ -272,6 +272,9 @@
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyEnemy.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyEnemyAnimInstance.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyGameInstance.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -302,6 +305,7 @@
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyCharacter.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyEnemy.h"/>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyEnemyAnimInstance.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameInstance.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameModeBase.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyHPBar.h"/>

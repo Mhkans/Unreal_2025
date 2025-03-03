@@ -21,13 +21,13 @@ void EmptyLinkFunctionForGeneratedCodeUnreal5_edu_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0x59BBC6D6,
-				0x27C72DF5,
+				0xAEA55E74,
+				0x8D0AB77A,
 				METADATA_PARAMS(0, nullptr)
 			};
 			UECodeGen_Private::ConstructUPackage(Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton, PackageParams);
 		}
 		return Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x59BBC6D6, 0x27C72DF5));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xAEA55E74, 0x8D0AB77A));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
