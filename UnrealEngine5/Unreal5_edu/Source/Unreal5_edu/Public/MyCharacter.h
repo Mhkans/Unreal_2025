@@ -20,7 +20,8 @@ protected:
 	virtual void BeginPlay() override;
 	void TakeEXP(AMyCharacter* victim);
 public:		
-	void Attack_Hit();
+	virtual void Attack_Hit();
+	void DeadEvent();
 	UFUNCTION()
 	void AttackEnd(class UAnimMontage* montage, bool bInterrupted);
 
@@ -28,6 +29,8 @@ public:
 
 	void AddHp(float amount);
 	const int16& GetLevel() { return _level; }
+
+	bool IsDead();
 protected:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowprivateAccess = "true"))
@@ -39,7 +42,5 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat", meta = (AllowprivateAccess = "true"))
 	class UMyStatComponent* _statComponent;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowprivateAccess = "true"))
-	class UWidgetComponent* _HPWidget;
 
 };

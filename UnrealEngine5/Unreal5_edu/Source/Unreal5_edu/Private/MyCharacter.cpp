@@ -15,6 +15,7 @@
 #include "MyItem.h"
 #include "Components/WidgetComponent.h"
 #include "MyHPBar.h"
+#include "MyPlayerController.h"
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
@@ -24,26 +25,12 @@ AMyCharacter::AMyCharacter()
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0, 0, -88), FRotator(0, -90, 0));
 
 	_statComponent = CreateDefaultSubobject<UMyStatComponent>(TEXT("Stat"));
-
-	_HPWidget = CreateDefaultSubobject<UWidgetComponent>(TEXT("HPBar"));
-	_HPWidget->SetupAttachment(GetMesh());
-	_HPWidget->SetWidgetSpace(EWidgetSpace::Screen);
-	_HPWidget->SetRelativeLocation(FVector(0, 0, 250));
-
-	static ConstructorHelpers::FClassFinder<UMyHPBar> hpBarClass(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/BluePrints/BP_MyHBBar.BP_MyHBBar_C'"));
-	if (hpBarClass.Succeeded()) {
-		_HPWidget->SetWidgetClass(hpBarClass.Class);
-	}
 }
 
 // Called when the game starts or when spawned
 void AMyCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	auto HPBar = Cast<UMyHPBar>(_HPWidget->GetUserWidgetObject());
-	if (HPBar) {
-		_statComponent->_hpChanged.AddUObject(HPBar, &UMyHPBar::SetHpBarValue);
-	}
 	
 }
 
@@ -69,7 +56,7 @@ void AMyCharacter::Attack_Hit()
 	FVector Start = GetActorLocation() + forward * attackRange * 0.5f; //충돌체의 중심 start
 	FVector End = GetActorLocation() + forward * attackRange * 0.5f; //충돌체의 중심 end
 
-	bool bResult = GetWorld()->SweepSingleByChannel(
+	bool bResult = GetWorld()->SweepSingleByChannel( //멀티채널로 변경해도됨
 		OUT hitResult,
 		Start,
 		End,
@@ -109,6 +96,12 @@ void AMyCharacter::Attack_Hit()
 	
 }
 
+void AMyCharacter::DeadEvent()
+{
+	SetActorHiddenInGame(true);
+	SetActorEnableCollision(false);
+}
+
 void AMyCharacter::AttackEnd(UAnimMontage* montage, bool bInterrupted)
 {
 	_isAttack = false;
@@ -119,11 +112,22 @@ float AMyCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AC
 	//방어력 다 깎고 실제입을 데미지 반환
 	_statComponent->AddCurHp(-Damage);
 	
+	auto attackerController = Cast<AMyPlayerController>(EventInstigator);
+	if (attackerController) {
+		if (IsDead()) {
+			UE_LOG(LogTemp, Error, TEXT("Dead by Player"));
+		}
+	}
 	return Damage;
 }
 
 void AMyCharacter::AddHp(float amount)
 {
 	_statComponent->AddCurHp(amount);
+}
+
+bool AMyCharacter::IsDead()
+{
+	return _statComponent->IsDead();
 }
 

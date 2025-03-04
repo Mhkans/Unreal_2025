@@ -22,6 +22,7 @@ DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAnimDelegateTest3);
 //
 
 DECLARE_MULTICAST_DELEGATE(FSendAttackerInfo);
+DECLARE_MULTICAST_DELEGATE(DeadEvent);
 
 UCLASS()
 class UNREAL5_EDU_API UMyAnimInstance : public UAnimInstance
@@ -41,17 +42,23 @@ public:
 
 	UFUNCTION()
 	void AnimNotify_Attack_Hit();
+	UFUNCTION()
+	void AnimNotify_Dead_Motion();
 
 	AnimDelegateTest _attackStart;
 	AnimDelegateTest2 _attackStart2;
 	UPROPERTY()
 	FAnimDelegateTest3 _attackStart3;
 	FSendAttackerInfo OnSendAttackerInfo; 
+	DeadEvent _deadEvent;
 private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
 	class UAnimMontage* _animMontage_Attack;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
+	class UAnimMontage* _animMontage_Dead;
+
 	UPROPERTY()
 	class AMyPlayer* _player;
 
@@ -64,4 +71,7 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
 	bool _isFalling = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
+	bool _isDead = false;
 };

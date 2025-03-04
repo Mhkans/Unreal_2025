@@ -27,6 +27,7 @@ public:
 	UFUNCTION()
 	void Attack(const struct FInputActionValue& value);
 
+	void AddItem(class AMyItem* item);
 	UFUNCTION()
 	
 
@@ -55,6 +56,9 @@ private:
 	class USpringArmComponent* _springArm;
 	UPROPERTY()
 	class UMyAnimInstance* _animInstance;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
+	TArray<class AMyItem*> _items;
 private:
 	int32 _curAttackSection = 1;
 

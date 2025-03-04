@@ -38,18 +38,13 @@ void AMyPlayer::BeginPlay()
 	_animInstance = Cast<UMyAnimInstance>(GetMesh()->GetAnimInstance());		
 	_animInstance->OnSendAttackerInfo.AddUObject(this, &AMyPlayer::Attack_Hit);		
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::AttackEnd);
+	_animInstance->_deadEvent.AddUObject(this, &AMyPlayer::DeadEvent);
 
 }
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	auto playerCamera = GetWorld()->GetFirstPlayerController()->PlayerCameraManager;
-	if (playerCamera) {
-		FVector hpBarLocation = _HPWidget->GetComponentLocation();
-		FVector cameraLocation = playerCamera->GetCameraLocation();
-		FRotator rot = UKismetMathLibrary::FindLookAtRotation(hpBarLocation, cameraLocation);
-		_HPWidget->SetWorldRotation(rot);
-	}
+	
 }
 
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -110,6 +105,13 @@ void AMyPlayer::Attack(const FInputActionValue& value)
 		_animInstance->PlayAnimMontage_Attack();
 		_animInstance->JumpToSection(_curAttackSection);
 	}
+}
+
+void AMyPlayer::AddItem(AMyItem* item)
+{
+	_items.Add(item);
+	UE_LOG(LogTemp, Log, TEXT("Items count : %d"), _items.Num());
+
 }
 
 

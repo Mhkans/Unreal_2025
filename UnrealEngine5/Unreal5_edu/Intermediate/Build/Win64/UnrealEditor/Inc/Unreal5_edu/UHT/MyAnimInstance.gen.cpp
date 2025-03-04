@@ -81,6 +81,35 @@ DEFINE_FUNCTION(UMyAnimInstance::execAnimNotify_Attack_Hit)
 }
 // End Class UMyAnimInstance Function AnimNotify_Attack_Hit
 
+// Begin Class UMyAnimInstance Function AnimNotify_Dead_Motion
+struct Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion_Statics
+{
+#if WITH_METADATA
+	static constexpr UECodeGen_Private::FMetaDataPairParam Function_MetaDataParams[] = {
+		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
+	};
+#endif // WITH_METADATA
+	static const UECodeGen_Private::FFunctionParams FuncParams;
+};
+const UECodeGen_Private::FFunctionParams Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion_Statics::FuncParams = { (UObject*(*)())Z_Construct_UClass_UMyAnimInstance, nullptr, "AnimNotify_Dead_Motion", nullptr, nullptr, nullptr, 0, 0, RF_Public|RF_Transient|RF_MarkAsNative, (EFunctionFlags)0x00020401, 0, 0, METADATA_PARAMS(UE_ARRAY_COUNT(Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion_Statics::Function_MetaDataParams), Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion_Statics::Function_MetaDataParams) };
+UFunction* Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion()
+{
+	static UFunction* ReturnFunction = nullptr;
+	if (!ReturnFunction)
+	{
+		UECodeGen_Private::ConstructUFunction(&ReturnFunction, Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion_Statics::FuncParams);
+	}
+	return ReturnFunction;
+}
+DEFINE_FUNCTION(UMyAnimInstance::execAnimNotify_Dead_Motion)
+{
+	P_FINISH;
+	P_NATIVE_BEGIN;
+	P_THIS->AnimNotify_Dead_Motion();
+	P_NATIVE_END;
+}
+// End Class UMyAnimInstance Function AnimNotify_Dead_Motion
+
 // Begin Class UMyAnimInstance Function JumpToSection
 struct Z_Construct_UFunction_UMyAnimInstance_JumpToSection_Statics
 {
@@ -158,6 +187,7 @@ void UMyAnimInstance::StaticRegisterNativesUMyAnimInstance()
 	UClass* Class = UMyAnimInstance::StaticClass();
 	static const FNameNativePtrPair Funcs[] = {
 		{ "AnimNotify_Attack_Hit", &UMyAnimInstance::execAnimNotify_Attack_Hit },
+		{ "AnimNotify_Dead_Motion", &UMyAnimInstance::execAnimNotify_Dead_Motion },
 		{ "JumpToSection", &UMyAnimInstance::execJumpToSection },
 		{ "PlayAnimMontage_Attack", &UMyAnimInstance::execPlayAnimMontage_Attack },
 	};
@@ -180,6 +210,11 @@ struct Z_Construct_UClass_UMyAnimInstance_Statics
 		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
 	};
 	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__animMontage_Attack_MetaData[] = {
+		{ "AllowprivateAccess", "true" },
+		{ "Category", "AnimMontage" },
+		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
+	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__animMontage_Dead_MetaData[] = {
 		{ "AllowprivateAccess", "true" },
 		{ "Category", "AnimMontage" },
 		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
@@ -207,19 +242,28 @@ struct Z_Construct_UClass_UMyAnimInstance_Statics
 		{ "Category", "Move" },
 		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
 	};
+	static constexpr UECodeGen_Private::FMetaDataPairParam NewProp__isDead_MetaData[] = {
+		{ "AllowprivateAccess", "true" },
+		{ "Category", "AnimMontage" },
+		{ "ModuleRelativePath", "Public/MyAnimInstance.h" },
+	};
 #endif // WITH_METADATA
 	static const UECodeGen_Private::FMulticastDelegatePropertyParams NewProp__attackStart3;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__animMontage_Attack;
+	static const UECodeGen_Private::FObjectPropertyParams NewProp__animMontage_Dead;
 	static const UECodeGen_Private::FObjectPropertyParams NewProp__player;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp__vertical;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp__horizontal;
 	static const UECodeGen_Private::FFloatPropertyParams NewProp__speed;
 	static void NewProp__isFalling_SetBit(void* Obj);
 	static const UECodeGen_Private::FBoolPropertyParams NewProp__isFalling;
+	static void NewProp__isDead_SetBit(void* Obj);
+	static const UECodeGen_Private::FBoolPropertyParams NewProp__isDead;
 	static const UECodeGen_Private::FPropertyParamsBase* const PropPointers[];
 	static UObject* (*const DependentSingletons[])();
 	static constexpr FClassFunctionLinkInfo FuncInfo[] = {
 		{ &Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Attack_Hit, "AnimNotify_Attack_Hit" }, // 1012634254
+		{ &Z_Construct_UFunction_UMyAnimInstance_AnimNotify_Dead_Motion, "AnimNotify_Dead_Motion" }, // 3413013522
 		{ &Z_Construct_UFunction_UMyAnimInstance_JumpToSection, "JumpToSection" }, // 3492273392
 		{ &Z_Construct_UFunction_UMyAnimInstance_PlayAnimMontage_Attack, "PlayAnimMontage_Attack" }, // 3617230196
 	};
@@ -231,6 +275,7 @@ struct Z_Construct_UClass_UMyAnimInstance_Statics
 };
 const UECodeGen_Private::FMulticastDelegatePropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__attackStart3 = { "_attackStart3", nullptr, (EPropertyFlags)0x0010000000080000, UECodeGen_Private::EPropertyGenFlags::InlineMulticastDelegate, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _attackStart3), Z_Construct_UDelegateFunction_Unreal5_edu_AnimDelegateTest3__DelegateSignature, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__attackStart3_MetaData), NewProp__attackStart3_MetaData) }; // 2064695373
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__animMontage_Attack = { "_animMontage_Attack", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _animMontage_Attack), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__animMontage_Attack_MetaData), NewProp__animMontage_Attack_MetaData) };
+const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__animMontage_Dead = { "_animMontage_Dead", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _animMontage_Dead), Z_Construct_UClass_UAnimMontage_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__animMontage_Dead_MetaData), NewProp__animMontage_Dead_MetaData) };
 const UECodeGen_Private::FObjectPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__player = { "_player", nullptr, (EPropertyFlags)0x0040000000000000, UECodeGen_Private::EPropertyGenFlags::Object, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _player), Z_Construct_UClass_AMyPlayer_NoRegister, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__player_MetaData), NewProp__player_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__vertical = { "_vertical", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _vertical), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__vertical_MetaData), NewProp__vertical_MetaData) };
 const UECodeGen_Private::FFloatPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__horizontal = { "_horizontal", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Float, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, STRUCT_OFFSET(UMyAnimInstance, _horizontal), METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__horizontal_MetaData), NewProp__horizontal_MetaData) };
@@ -240,14 +285,21 @@ void Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isFalling_SetBit(void*
 	((UMyAnimInstance*)Obj)->_isFalling = 1;
 }
 const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isFalling = { "_isFalling", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UMyAnimInstance), &Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isFalling_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__isFalling_MetaData), NewProp__isFalling_MetaData) };
+void Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isDead_SetBit(void* Obj)
+{
+	((UMyAnimInstance*)Obj)->_isDead = 1;
+}
+const UECodeGen_Private::FBoolPropertyParams Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isDead = { "_isDead", nullptr, (EPropertyFlags)0x0040000000000005, UECodeGen_Private::EPropertyGenFlags::Bool | UECodeGen_Private::EPropertyGenFlags::NativeBool, RF_Public|RF_Transient|RF_MarkAsNative, nullptr, nullptr, 1, sizeof(bool), sizeof(UMyAnimInstance), &Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isDead_SetBit, METADATA_PARAMS(UE_ARRAY_COUNT(NewProp__isDead_MetaData), NewProp__isDead_MetaData) };
 const UECodeGen_Private::FPropertyParamsBase* const Z_Construct_UClass_UMyAnimInstance_Statics::PropPointers[] = {
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__attackStart3,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__animMontage_Attack,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__animMontage_Dead,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__player,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__vertical,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__horizontal,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__speed,
 	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isFalling,
+	(const UECodeGen_Private::FPropertyParamsBase*)&Z_Construct_UClass_UMyAnimInstance_Statics::NewProp__isDead,
 };
 static_assert(UE_ARRAY_COUNT(Z_Construct_UClass_UMyAnimInstance_Statics::PropPointers) < 2048);
 UObject* (*const Z_Construct_UClass_UMyAnimInstance_Statics::DependentSingletons[])() = {
@@ -287,14 +339,14 @@ UMyAnimInstance::~UMyAnimInstance() {}
 // End Class UMyAnimInstance
 
 // Begin Registration
-struct Z_CompiledInDeferFile_FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics
+struct Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics
 {
 	static constexpr FClassRegisterCompiledInInfo ClassInfo[] = {
-		{ Z_Construct_UClass_UMyAnimInstance, UMyAnimInstance::StaticClass, TEXT("UMyAnimInstance"), &Z_Registration_Info_UClass_UMyAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyAnimInstance), 3876767197U) },
+		{ Z_Construct_UClass_UMyAnimInstance, UMyAnimInstance::StaticClass, TEXT("UMyAnimInstance"), &Z_Registration_Info_UClass_UMyAnimInstance, CONSTRUCT_RELOAD_VERSION_INFO(FClassReloadVersionInfo, sizeof(UMyAnimInstance), 3882550832U) },
 	};
 };
-static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_4126576907(TEXT("/Script/Unreal5_edu"),
-	Z_CompiledInDeferFile_FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics::ClassInfo),
+static FRegisterCompiledInInfo Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_2312511607(TEXT("/Script/Unreal5_edu"),
+	Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics::ClassInfo, UE_ARRAY_COUNT(Z_CompiledInDeferFile_FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyAnimInstance_h_Statics::ClassInfo),
 	nullptr, 0,
 	nullptr, 0);
 // End Registration

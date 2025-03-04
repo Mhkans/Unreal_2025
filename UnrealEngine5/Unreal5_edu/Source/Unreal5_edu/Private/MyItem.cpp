@@ -22,7 +22,7 @@ AMyItem::AMyItem()
 void AMyItem::PostInitializeComponents() //생성이 다 끝난 후
 {
 	Super::PostInitializeComponents();
-	_collider->OnComponentBeginOverlap.AddDynamic(this, &AMyItem::OnMyCharacterOverlap);
+	_collider->OnComponentBeginOverlap.AddDynamic(this, &AMyItem::OnOverlap);
 
 }
 
@@ -39,12 +39,13 @@ void AMyItem::Tick(float DeltaTime)
 
 }
 
-void AMyItem::OnMyCharacterOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+void AMyItem::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	auto character = Cast<AMyPlayer>(OtherActor);
 	auto player = Cast<AMyPlayerController>(character->GetController());
 	if (character != nullptr &&player != nullptr ) {
 		character->AddHp(_healValue);
+		character->AddItem(this);
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
 	}

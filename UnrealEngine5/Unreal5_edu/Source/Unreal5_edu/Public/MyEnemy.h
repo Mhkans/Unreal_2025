@@ -27,4 +27,7 @@ public:
 private:
 	UPROPERTY()
 	class UMyEnemyAnimInstance* _animInstance;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "UI", meta = (AllowprivateAccess = "true"))
+	class UWidgetComponent* _HPWidget;
 };

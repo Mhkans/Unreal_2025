@@ -14,7 +14,7 @@ PRAGMA_DISABLE_DEPRECATION_WARNINGS
 #endif
 #define UNREAL5_EDU_MyTutoActor_generated_h
 
-#define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_INCLASS_NO_PURE_DECLS \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyTutoActor(); \
 	friend struct Z_Construct_UClass_AMyTutoActor_Statics; \
@@ -23,7 +23,7 @@ public: \
 	DECLARE_SERIALIZER(AMyTutoActor)
 
 
-#define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_ENHANCED_CONSTRUCTORS \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMyTutoActor(AMyTutoActor&&); \
@@ -35,12 +35,12 @@ public: \
 	NO_API virtual ~AMyTutoActor();
 
 
-#define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_9_PROLOG
-#define FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_GENERATED_BODY \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_9_PROLOG
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_INCLASS_NO_PURE_DECLS \
-	FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_ENHANCED_CONSTRUCTORS \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_INCLASS_NO_PURE_DECLS \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h_12_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
@@ -48,7 +48,7 @@ PRAGMA_ENABLE_DEPRECATION_WARNINGS
 template<> UNREAL5_EDU_API UClass* StaticClass<class AMyTutoActor>();
 
 #undef CURRENT_FILE_ID
-#define CURRENT_FILE_ID FID_GitHub_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h
+#define CURRENT_FILE_ID FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyTutoActor_h
 
 
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

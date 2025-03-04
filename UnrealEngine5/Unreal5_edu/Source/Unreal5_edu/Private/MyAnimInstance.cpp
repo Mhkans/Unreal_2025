@@ -40,6 +40,14 @@ void UMyAnimInstance::AnimNotify_Attack_Hit()
 	OnSendAttackerInfo.Broadcast();
 }
 
+void UMyAnimInstance::AnimNotify_Dead_Motion()
+{
+	//죽었을때 나오는 이벤트들
+	if (_deadEvent.IsBound()) {
+		_deadEvent.Broadcast();
+	}
+}
+
 void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 {
 	Super::NativeUpdateAnimation(DeltaSeconds);
@@ -49,5 +57,6 @@ void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		_horizontal = _player->My_Horizontal();
 		_speed = _player->GetMovementComponent()->Velocity.Size2D();
 		_isFalling = _player->GetMovementComponent()->IsFalling();
+		_isDead = _player->IsDead();
 	}
 }
