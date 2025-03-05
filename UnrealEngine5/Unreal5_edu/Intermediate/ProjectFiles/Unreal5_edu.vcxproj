@@ -284,6 +284,9 @@
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyHPBar.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyInvenComponent.cpp">
+      <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyInvenUI.cpp">
       <AdditionalIncludeDirectories>$(ClCompile_AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
@@ -312,6 +315,7 @@
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameInstance.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyGameModeBase.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyHPBar.h"/>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyInvenComponent.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyInvenUI.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyItem.h"/>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyPlayer.h"/>

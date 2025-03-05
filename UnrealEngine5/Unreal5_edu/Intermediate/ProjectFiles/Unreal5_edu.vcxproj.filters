@@ -64,6 +64,9 @@
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyHPBar.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyInvenComponent.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyInvenUI.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
@@ -107,6 +110,9 @@
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyHPBar.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyInvenComponent.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyInvenUI.h">

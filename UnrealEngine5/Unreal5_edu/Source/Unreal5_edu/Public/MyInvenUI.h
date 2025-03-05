@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
+#include "MyItem.h"
 #include "MyInvenUI.generated.h"
 
 /**
@@ -15,11 +16,15 @@ class UNREAL5_EDU_API UMyInvenUI : public UUserWidget
 	GENERATED_BODY()
 public:
 	virtual void NativeConstruct() override;
+	void SetItem_Index(int32 index, FMyItemInfo info);
 
 	UPROPERTY(Editanywhere,BlueprintReadWrite,meta = (BindWidget))
 	class UUniformGridPanel* Grid; //이름이 일치해야함
 	UPROPERTY(Editanywhere, BlueprintReadWrite)
 	TArray<class UImage*> _slotImages;
+
+	UPROPERTY()
+	UTexture2D* _potionTexture;
 private:
 
 };

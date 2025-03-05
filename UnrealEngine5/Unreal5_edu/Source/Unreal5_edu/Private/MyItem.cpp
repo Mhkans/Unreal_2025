@@ -30,6 +30,7 @@ void AMyItem::PostInitializeComponents() //생성이 다 끝난 후
 void AMyItem::BeginPlay()
 {
 	Super::BeginPlay();
+
 }
 
 // Called every frame
@@ -42,12 +43,16 @@ void AMyItem::Tick(float DeltaTime)
 void AMyItem::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
 	auto character = Cast<AMyPlayer>(OtherActor);
+	if (character == nullptr) {
+		return;
+	}
 	auto player = Cast<AMyPlayerController>(character->GetController());
-	if (character != nullptr &&player != nullptr ) {
+	if (player != nullptr ) {
 		character->AddHp(_healValue);
 		character->AddItem(this);
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);
+		
 	}
 }
 
