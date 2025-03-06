@@ -19,6 +19,8 @@
 #include "Blueprint/UserWidget.h"
 #include "MyInvenUI.h"
 #include "MyInvenComponent.h"
+#include "MyPlayerController.h"
+#include "Components/Button.h"
 AMyPlayer::AMyPlayer()
 {
 	_level = 3;
@@ -48,6 +50,7 @@ void AMyPlayer::PostInitializeComponents()
 	if (invenUI) {
 		_myInvenComponent->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
 		_myInvenComponent->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
+		invenUI->Drop->OnClicked.AddDynamic(this, &AMyPlayer::Drop_B);
 	}
 }
 
@@ -59,14 +62,10 @@ void AMyPlayer::BeginPlay()
 	_animInstance->OnMontageEnded.AddDynamic(this, &AMyPlayer::AttackEnd);
 	_animInstance->_deadEvent.AddUObject(this, &AMyPlayer::DeadEvent);
 
-	if (_invenWidget) {
-		_invenWidget->AddToViewport();
-	}
 }
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	_delay += DeltaTime;
 }
 
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -78,14 +77,15 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 		enhancedInputComponent->BindAction(_lookAction, ETriggerEvent::Triggered, this, &AMyPlayer::Look);
 		enhancedInputComponent->BindAction(_jumpAction, ETriggerEvent::Triggered, this, &AMyPlayer::JumpA);
 		enhancedInputComponent->BindAction(_attackAction, ETriggerEvent::Triggered, this, &AMyPlayer::Attack);
-		enhancedInputComponent->BindAction(_dropAction, ETriggerEvent::Triggered, this, &AMyPlayer::Drop);
-
+		enhancedInputComponent->BindAction(_dropAction, ETriggerEvent::Started, this, &AMyPlayer::Drop);
+		enhancedInputComponent->BindAction(_invenAction, ETriggerEvent::Started, this, &AMyPlayer::InvenOpen);
 	}
 }
 
 void AMyPlayer::Move(const FInputActionValue& value)
 {
 	if (_isAttack) { return; }
+	
 	FVector2D moveVector = value.Get<FVector2D>();
 	if (Controller != nullptr) {
 		if (moveVector.Length() > 0.01f) {
@@ -103,6 +103,7 @@ void AMyPlayer::Move(const FInputActionValue& value)
 
 void AMyPlayer::Look(const FInputActionValue& value)
 {
+	if (_isInvenOpen) { return; }
 	FVector2D lookAxisVector = value.Get<FVector2D>();
 	if (Controller != nullptr) {
 		AddControllerYawInput(lookAxisVector.X);
@@ -137,9 +138,6 @@ void AMyPlayer::Drop(const FInputActionValue& value)
 	if (_myInvenComponent->GetArraySize() <= 0) {
 		return;
 	}
-	if (_delay < 2.0f) {
-		return;
-	}
 	bool isPressed = value.Get<bool>();
 	if (Controller != nullptr && isPressed) {
 		auto itemInfo = _myInvenComponent->DropItem();
@@ -147,7 +145,31 @@ void AMyPlayer::Drop(const FInputActionValue& value)
 
 		AMyItem* newItem = GetWorld()->SpawnActor<AMyItem>(AMyItem::StaticClass(), spawnLocation, GetActorRotation());
 		newItem->SetInfo(itemInfo);
-		_delay = 0.0f;
+		
+	}
+}
+
+void AMyPlayer::InvenOpen(const FInputActionValue& value)
+{
+
+	bool isPressed = value.Get<bool>();
+	if (Controller != nullptr && isPressed) {
+		auto controller = Cast<AMyPlayerController>(GetController());
+		
+		if (_isInvenOpen) {
+			if (controller) {
+				controller->HideUI();
+			}
+			_invenWidget->RemoveFromViewport();
+		}
+		else {
+			if (controller) {
+				controller->ShowUI();
+			}
+			_invenWidget->AddToViewport();
+		}
+		_isInvenOpen = !_isInvenOpen;
+
 	}
 }
 
@@ -175,6 +197,19 @@ FVector AMyPlayer::SpawnItem()
 
 	return itemPos;
 
+}
+
+void AMyPlayer::Drop_B()
+{
+	if (_isAttack) { return; }
+	if (_myInvenComponent->GetArraySize() <= 0) {
+		return;
+	}
+	auto itemInfo = _myInvenComponent->DropItem();
+	FVector spawnLocation = SpawnItem();
+
+	AMyItem* newItem = GetWorld()->SpawnActor<AMyItem>(AMyItem::StaticClass(), spawnLocation, GetActorRotation());
+	newItem->SetInfo(itemInfo);
 }
 
 

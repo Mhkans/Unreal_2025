@@ -15,16 +15,25 @@ class UNREAL5_EDU_API UMyInvenUI : public UUserWidget
 {
 	GENERATED_BODY()
 public:
+	virtual bool Initialize() override;
 	virtual void NativeConstruct() override;
 	void SetItem_Index(int32 index, FMyItemInfo info);
+
+
 	UPROPERTY(Editanywhere,BlueprintReadWrite,meta = (BindWidget))
-	class UUniformGridPanel* Grid; //¿¡µğÅÍ¿Í ÀÌ¸§ÀÌ ÀÏÄ¡ÇØ¾ßÇÔ
+	class UUniformGridPanel* Grid; //ì—ë””í„°ì™€ ì´ë¦„ì´ ì¼ì¹˜í•´ì•¼í•¨
+	UPROPERTY(Editanywhere, BlueprintReadWrite, meta = (BindWidget))
+	class UButton* Drop;
+
 	UPROPERTY(Editanywhere, BlueprintReadWrite)
 	TArray<class UImage*> _slotImages;
-
+	UPROPERTY(Editanywhere, BlueprintReadWrite)
+	TArray<class UButton*> _slotButtons;
 	UPROPERTY()
 	UTexture2D* _potionTexture;
 	UTexture2D* _defaultTexture;
+
+	int32 _curIndex = -1;
 private:
 
 };

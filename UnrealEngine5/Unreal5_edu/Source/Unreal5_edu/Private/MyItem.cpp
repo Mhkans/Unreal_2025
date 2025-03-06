@@ -54,6 +54,9 @@ void AMyItem::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 	auto player = Cast<AMyPlayerController>(character->GetController());
 	if (player != nullptr ) {
 		//character->AddHp(_healValue); 나중에 사용하면 회복되게 변경해야함
+		if (character->GetArraySize() >= 9) {
+			return;
+		}
 		character->AddItem(this);
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);

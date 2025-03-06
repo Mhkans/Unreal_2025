@@ -18,5 +18,5 @@ public:
 	void SetHpBarValue(float ratio);
 private:
 	UPROPERTY(meta = (BindWidget))
-	class UProgressBar* PB_HPBar; //¹İµå½Ã ÀÌ¸§À» ¸ÂÃçÁà¾ßÇÔ
+	class UProgressBar* PB_HPBar; //ë°˜ë“œì‹œ ì´ë¦„ì„ ë§ì¶°ì¤˜ì•¼í•¨
 };

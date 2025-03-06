@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "MyCharacter.h"
+#include "MyInvenComponent.h"
 #include "MyPlayer.generated.h"
 
 /**
@@ -31,6 +32,9 @@ public:
 	void Attack(const struct FInputActionValue& value);
 	UFUNCTION()
 	void Drop(const struct FInputActionValue& value);
+	UFUNCTION()
+	void InvenOpen(const struct FInputActionValue& value);
+
 
 	void AddItem(class AMyItem* item);
 	FVector SpawnItem();
@@ -40,6 +44,10 @@ public:
 	float My_Vertical() { return _vertical; }
 	float My_Horizontal() { return _horizontal; }
 
+	int32 GetArraySize() { return _myInvenComponent->GetArraySize(); }
+
+	UFUNCTION()
+	void Drop_B();
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;
@@ -55,6 +63,9 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Attack", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _attackAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Inven", meta = (AllowprivateAccess = "true"))
+	class UInputAction* _invenAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Camera", meta = (AllowprivateAccess = "true"))
 	class UCameraComponent* _camera;
@@ -76,5 +87,5 @@ private:
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
 
-	float _delay = 0.0f;
+	bool _isInvenOpen = false;
 };

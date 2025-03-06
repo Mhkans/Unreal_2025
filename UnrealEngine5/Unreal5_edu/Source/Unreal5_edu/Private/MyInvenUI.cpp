@@ -2,28 +2,42 @@
 
 
 #include "MyInvenUI.h"
+#include "MyButton.h"
 #include "Components/UniformGridPanel.h"
+#include "Components/Button.h"
 #include "Components/Image.h"
+bool UMyInvenUI::Initialize()
+{
+	Super::Initialize();
+
+	_potionTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Script/Engine.Texture2D'/Game/Graphics/UI/Items/Tex_seeds_06.Tex_seeds_06'"));
+	_defaultTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Script/Engine.Texture2D'/Game/Graphics/UI/Items/Tex_Default.Tex_Default'"));
+
+	int32 index = 0;
+	auto array = Grid->GetAllChildren();
+	for (auto widget : array) {
+		auto button = Cast<UMyButton>(widget);
+		/*button->widget = this;
+		button->_curIndex = index;
+		index++;*/
+		if (button) {
+			auto image = Cast<UImage>(button->GetChildAt(0));
+			if (image) {
+				_slotImages.Add(image);
+			}
+		}
+	}
+
+	if (_slotImages.Num() <= 0) {
+		return false;
+	}
+	return true;
+}
 void UMyInvenUI::NativeConstruct()
 {
 	Super::NativeConstruct();
 
-	auto array = Grid->GetAllChildren();
-	for (auto widget : array) {
-		auto image = Cast<UImage>(widget);
-		if (image) {
-			_slotImages.Add(image);
-		}
-	}
-
-	UE_LOG(LogTemp, Error, TEXT("Imgae Size : %d"), _slotImages.Num());
-
-	_potionTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Script/Engine.Texture2D'/Game/Graphics/UI/Items/Tex_seeds_06_b.Tex_seeds_06_b'"));
-	_defaultTexture = LoadObject<UTexture2D>(nullptr, TEXT("/Script/Engine.Texture2D'/Game/Graphics/UI/Items/Tex_Default.Tex_Default'"));
-
-	for (auto slot : _slotImages) {
-		slot->SetBrushFromTexture(_defaultTexture);
-	}
+	
 }
 
 void UMyInvenUI::SetItem_Index(int32 index, FMyItemInfo info)
@@ -35,5 +49,4 @@ void UMyInvenUI::SetItem_Index(int32 index, FMyItemInfo info)
 		_slotImages[index]->SetBrushFromTexture(_potionTexture);
 	}
 }
-
 
