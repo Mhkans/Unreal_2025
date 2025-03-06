@@ -17,14 +17,14 @@ class UNREAL5_EDU_API UMyInvenUI : public UUserWidget
 public:
 	virtual void NativeConstruct() override;
 	void SetItem_Index(int32 index, FMyItemInfo info);
-
 	UPROPERTY(Editanywhere,BlueprintReadWrite,meta = (BindWidget))
-	class UUniformGridPanel* Grid; //이름이 일치해야함
+	class UUniformGridPanel* Grid; //에디터와 이름이 일치해야함
 	UPROPERTY(Editanywhere, BlueprintReadWrite)
 	TArray<class UImage*> _slotImages;
 
 	UPROPERTY()
 	UTexture2D* _potionTexture;
+	UTexture2D* _defaultTexture;
 private:
 
 };

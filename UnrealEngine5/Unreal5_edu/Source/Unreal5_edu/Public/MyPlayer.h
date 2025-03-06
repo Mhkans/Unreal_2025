@@ -65,7 +65,7 @@ private:
 	class UMyAnimInstance* _animInstance;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
-	class UMyInvenComponent* _invenComponent;
+	class UMyInvenComponent* _myInvenComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
 	class UUserWidget* _invenWidget;
@@ -75,4 +75,6 @@ private:
 
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
+
+	float _delay = 0.0f;
 };

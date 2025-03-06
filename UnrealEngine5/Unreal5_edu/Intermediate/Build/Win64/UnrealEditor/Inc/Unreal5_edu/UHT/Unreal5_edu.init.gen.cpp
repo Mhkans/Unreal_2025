@@ -21,7 +21,7 @@ void EmptyLinkFunctionForGeneratedCodeUnreal5_edu_init() {}
 				SingletonFuncArray,
 				UE_ARRAY_COUNT(SingletonFuncArray),
 				PKG_CompiledIn | 0x00000000,
-				0xB0EEE53F,
+				0x3775D1C4,
 				0x8B177CDB,
 				METADATA_PARAMS(0, nullptr)
 			};
@@ -29,5 +29,5 @@ void EmptyLinkFunctionForGeneratedCodeUnreal5_edu_init() {}
 		}
 		return Z_Registration_Info_UPackage__Script_Unreal5_edu.OuterSingleton;
 	}
-	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0xB0EEE53F, 0x8B177CDB));
+	static FRegisterCompiledInInfo Z_CompiledInDeferPackage_UPackage__Script_Unreal5_edu(Z_Construct_UPackage__Script_Unreal5_edu, TEXT("/Script/Unreal5_edu"), Z_Registration_Info_UPackage__Script_Unreal5_edu, CONSTRUCT_RELOAD_VERSION_INFO(FPackageReloadVersionInfo, 0x3775D1C4, 0x8B177CDB));
 PRAGMA_ENABLE_DEPRECATION_WARNINGS

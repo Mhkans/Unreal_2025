@@ -15,11 +15,16 @@ AMyItem::AMyItem()
 	_collider = CreateDefaultSubobject<UCapsuleComponent>(TEXT("Collider"));
 	_mesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Mesh"));
 
-	_mesh->SetupAttachment(_collider);
-	RootComponent = _collider;
+	_collider->SetupAttachment(_mesh);
+	RootComponent = _mesh;
+	static ConstructorHelpers::FObjectFinder<UStaticMesh> MeshAsset(TEXT("/Script/Engine.StaticMesh'/Game/StarterContent/Props/SM_Statue.SM_Statue'"));
+	if (MeshAsset.Succeeded())
+	{
+		_mesh->SetStaticMesh(MeshAsset.Object);
+	}
 }
 
-void AMyItem::PostInitializeComponents() //»ý¼ºÀÌ ´Ù ³¡³­ ÈÄ
+void AMyItem::PostInitializeComponents() //ìƒì„±ì´ ë‹¤ ëë‚œ í›„
 {
 	Super::PostInitializeComponents();
 	_collider->OnComponentBeginOverlap.AddDynamic(this, &AMyItem::OnOverlap);
@@ -48,7 +53,7 @@ void AMyItem::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherA
 	}
 	auto player = Cast<AMyPlayerController>(character->GetController());
 	if (player != nullptr ) {
-		character->AddHp(_healValue);
+		//character->AddHp(_healValue); ë‚˜ì¤‘ì— ì‚¬ìš©í•˜ë©´ íšŒë³µë˜ê²Œ ë³€ê²½í•´ì•¼í•¨
 		character->AddItem(this);
 		SetActorHiddenInGame(true);
 		SetActorEnableCollision(false);

@@ -33,15 +33,28 @@ void UMyInvenComponent::TickComponent(float DeltaTime, ELevelTick TickType, FAct
 	// ...
 }
 
+int32 UMyInvenComponent::GetArraySize()
+{
+	int32 count = 0;
+	for (auto item : _items) {
+		if (item.itemId != -1 && item.type != MyItemType::NONE) {
+			count++;
+		}
+	}
+	return count;
+	
+}
+
+
+
 void UMyInvenComponent::AddItem(int32 itemID, MyItemType type)
 {
 	FMyItemInfo Addinfo;
 	Addinfo.itemId = itemID;
 	Addinfo.type = type;
 
-	FMyItemInfo temp;
-	auto target = _items.FindByPredicate([temp](FMyItemInfo info) {
-		return temp.itemId == info.itemId && temp.type == info.type;
+	auto target = _items.FindByPredicate([](FMyItemInfo info) {
+		return info.itemId == -1 && info.type == MyItemType::NONE;
 	});
 	if (target == nullptr) {
 		return;
@@ -58,11 +71,20 @@ void UMyInvenComponent::AddItem(int32 itemID, MyItemType type)
 
 FMyItemInfo UMyInvenComponent::DropItem()
 {
-	return FMyItemInfo();
+	int32 arrayIndex = GetArraySize()-1;
+	auto temp = _items[arrayIndex];
+	FMyItemInfo defaultInfo;
+	_items[arrayIndex] = defaultInfo;
+	itemDropEvent.Broadcast(arrayIndex, defaultInfo);
+	return temp;
 }
 
 FMyItemInfo UMyInvenComponent::DropItem(int32 index)
 {
-	return FMyItemInfo();
+	auto temp = _items[index];	
+	FMyItemInfo defaultInfo;
+	_items[index] = defaultInfo;
+	itemDropEvent.Broadcast(index, defaultInfo);
+	return temp;
 }
 

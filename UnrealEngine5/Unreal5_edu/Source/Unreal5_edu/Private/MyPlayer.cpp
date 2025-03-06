@@ -37,7 +37,7 @@ AMyPlayer::AMyPlayer()
 		_invenWidget = CreateWidget<UUserWidget>(GetWorld(),invenClass.Class);
 	}
 
-	_invenComponent = CreateDefaultSubobject<UMyInvenComponent>(TEXT("InvenComponent"));
+	_myInvenComponent = CreateDefaultSubobject<UMyInvenComponent>(TEXT("InvenComponent"));
 	
 }
 
@@ -46,7 +46,8 @@ void AMyPlayer::PostInitializeComponents()
 	Super::PostInitializeComponents();
 	auto invenUI = Cast<UMyInvenUI>(_invenWidget);
 	if (invenUI) {
-		_invenComponent->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
+		_myInvenComponent->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
+		_myInvenComponent->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
 	}
 }
 
@@ -65,6 +66,7 @@ void AMyPlayer::BeginPlay()
 void AMyPlayer::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	_delay += DeltaTime;
 }
 
 void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -131,13 +133,28 @@ void AMyPlayer::Attack(const FInputActionValue& value)
 
 void AMyPlayer::Drop(const FInputActionValue& value)
 {
+	if (_isAttack) { return; }
+	if (_myInvenComponent->GetArraySize() <= 0) {
+		return;
+	}
+	if (_delay < 2.0f) {
+		return;
+	}
+	bool isPressed = value.Get<bool>();
+	if (Controller != nullptr && isPressed) {
+		auto itemInfo = _myInvenComponent->DropItem();
+		FVector spawnLocation = SpawnItem();
 
+		AMyItem* newItem = GetWorld()->SpawnActor<AMyItem>(AMyItem::StaticClass(), spawnLocation, GetActorRotation());
+		newItem->SetInfo(itemInfo);
+		_delay = 0.0f;
+	}
 }
 
 void AMyPlayer::AddItem(AMyItem* item)
 {
-	if (item && _invenComponent) {
-		_invenComponent->AddItem(item->GetInfo().itemId, item->GetInfo().type);
+	if (item && _myInvenComponent) {
+		_myInvenComponent->AddItem(item->GetInfo().itemId, item->GetInfo().type);
 	}
 }
 
@@ -154,7 +171,7 @@ FVector AMyPlayer::SpawnItem()
 	FVector itemPos;
 	itemPos.X = playerPos.X + SpawnDistance * FMath::Cos(FMath::DegreesToRadians(SpawnAngle));
 	itemPos.Y = playerPos.Y + SpawnDistance * FMath::Sin(FMath::DegreesToRadians(SpawnAngle));
-	itemPos.Z = playerPos.Z;
+	itemPos.Z = 0;
 
 	return itemPos;
 
