@@ -6,6 +6,12 @@
 #include "Components/UniformGridPanel.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
+void UMyInvenUI::NativeConstruct()
+{
+	Super::NativeConstruct();
+
+	
+}
 bool UMyInvenUI::Initialize()
 {
 	Super::Initialize();
@@ -17,27 +23,24 @@ bool UMyInvenUI::Initialize()
 	auto array = Grid->GetAllChildren();
 	for (auto widget : array) {
 		auto button = Cast<UMyButton>(widget);
-		/*button->widget = this;
 		button->_curIndex = index;
-		index++;*/
+		button->widget = this;
+		index++;
+		_slotButtons.Add(button);
 		if (button) {
 			auto image = Cast<UImage>(button->GetChildAt(0));
 			if (image) {
 				_slotImages.Add(image);
 			}
+			button->OnClicked.AddDynamic(button, &UMyButton::SetCurIndex);
 		}
+		
 	}
 
 	if (_slotImages.Num() <= 0) {
 		return false;
 	}
 	return true;
-}
-void UMyInvenUI::NativeConstruct()
-{
-	Super::NativeConstruct();
-
-	
 }
 
 void UMyInvenUI::SetItem_Index(int32 index, FMyItemInfo info)

@@ -19,7 +19,6 @@ public:
 	virtual void NativeConstruct() override;
 	void SetItem_Index(int32 index, FMyItemInfo info);
 
-
 	UPROPERTY(Editanywhere,BlueprintReadWrite,meta = (BindWidget))
 	class UUniformGridPanel* Grid; //에디터와 이름이 일치해야함
 	UPROPERTY(Editanywhere, BlueprintReadWrite, meta = (BindWidget))
@@ -37,3 +36,10 @@ public:
 private:
 
 };
+/*
+버튼을 클릭하면 void void 함수포인터 불러와야함
+
+버튼의 인덱스를 아는방법 
+각버튼의 인덱스 = 배열의 인덱스
+
+*/

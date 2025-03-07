@@ -47,7 +47,7 @@ public:
 	int32 GetArraySize() { return _myInvenComponent->GetArraySize(); }
 
 	UFUNCTION()
-	void Drop_B();
+	void Drop_Button();
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;

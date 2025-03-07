@@ -9,11 +9,10 @@ void UMyButton::SetCurIndex()
 		return;
 	}
 	widget->_curIndex = _curIndex;
-	UE_LOG(LogTemp, Error, TEXT("Widget Curindex : %d "), widget->_curIndex + 1);
+	UE_LOG(LogTemp, Error, TEXT("Widget Curindex : %d "), widget->_curIndex);
 }
 
 void UMyButton::PostLoad()
 {
 	Super::PostLoad();
-	//OnClicked.AddDynamic(this, &UMyButton::SetCurIndex);
 }

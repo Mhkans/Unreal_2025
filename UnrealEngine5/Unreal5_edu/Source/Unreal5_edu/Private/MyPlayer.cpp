@@ -50,7 +50,7 @@ void AMyPlayer::PostInitializeComponents()
 	if (invenUI) {
 		_myInvenComponent->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
 		_myInvenComponent->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
-		invenUI->Drop->OnClicked.AddDynamic(this, &AMyPlayer::Drop_B);
+		invenUI->Drop->OnClicked.AddDynamic(this, &AMyPlayer::Drop_Button);
 	}
 }
 
@@ -199,7 +199,7 @@ FVector AMyPlayer::SpawnItem()
 
 }
 
-void AMyPlayer::Drop_B()
+void AMyPlayer::Drop_Button()
 {
 	if (_isAttack) { return; }
 	if (_myInvenComponent->GetArraySize() <= 0) {

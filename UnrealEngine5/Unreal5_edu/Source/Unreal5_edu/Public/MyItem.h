@@ -19,6 +19,7 @@ struct FMyItemInfo {
 	int32 itemId = -1;
 	UPROPERTY(EditAnywhere)
 	MyItemType type = MyItemType::NONE;
+	
 };
 
 UCLASS()

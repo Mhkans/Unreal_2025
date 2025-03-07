@@ -14,7 +14,9 @@ class UNREAL5_EDU_API UMyButton : public UButton
 {
 	GENERATED_BODY()
 public:
+	UFUNCTION()
 	void SetCurIndex();
+
 	virtual void PostLoad() override;
 	class UMyInvenUI* widget;
 	int32 _curIndex;

@@ -24,11 +24,11 @@ struct FHitResult;
 
 template<> UNREAL5_EDU_API UScriptStruct* StaticStruct<struct FMyItemInfo>();
 
-#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_RPC_WRAPPERS_NO_PURE_DECLS \
 	DECLARE_FUNCTION(execOnOverlap);
 
 
-#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_INCLASS_NO_PURE_DECLS \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_INCLASS_NO_PURE_DECLS \
 private: \
 	static void StaticRegisterNativesAMyItem(); \
 	friend struct Z_Construct_UClass_AMyItem_Statics; \
@@ -37,7 +37,7 @@ public: \
 	DECLARE_SERIALIZER(AMyItem)
 
 
-#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_ENHANCED_CONSTRUCTORS \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_ENHANCED_CONSTRUCTORS \
 private: \
 	/** Private move- and copy-constructors, should never be used */ \
 	AMyItem(AMyItem&&); \
@@ -49,13 +49,13 @@ public: \
 	NO_API virtual ~AMyItem();
 
 
-#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_24_PROLOG
-#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_GENERATED_BODY \
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_25_PROLOG
+#define FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_GENERATED_BODY \
 PRAGMA_DISABLE_DEPRECATION_WARNINGS \
 public: \
-	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_RPC_WRAPPERS_NO_PURE_DECLS \
-	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_INCLASS_NO_PURE_DECLS \
-	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_27_ENHANCED_CONSTRUCTORS \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_RPC_WRAPPERS_NO_PURE_DECLS \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_INCLASS_NO_PURE_DECLS \
+	FID_2025_Unreal_Unreal_2025_UnrealEngine5_Unreal5_edu_Source_Unreal5_edu_Public_MyItem_h_28_ENHANCED_CONSTRUCTORS \
 private: \
 PRAGMA_ENABLE_DEPRECATION_WARNINGS
 
