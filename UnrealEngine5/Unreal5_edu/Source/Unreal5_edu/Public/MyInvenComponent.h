@@ -8,7 +8,7 @@
 #include "MyInvenComponent.generated.h"
 
 DECLARE_MULTICAST_DELEGATE_TwoParams(FItemAdd, int32, FMyItemInfo);
-DECLARE_MULTICAST_DELEGATE_TwoParams(FItemDrop,int32 , FMyItemInfo);
+DECLARE_MULTICAST_DELEGATE_OneParam(FItemDrop,int32);
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class UNREAL5_EDU_API UMyInvenComponent : public UActorComponent
 {
@@ -27,15 +27,16 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
 	int32 GetArraySize();
+	int32 EmptyIndex();
 
-	void AddItem(int32 itemID, MyItemType type);
+	void AddItem(AMyItem* item);
 
-	FMyItemInfo DropItem();
-	FMyItemInfo DropItem(int32 index);
+	AMyItem* DropItem();
+	AMyItem* DropItem(int32 index);
 
 	FItemAdd itemAddEvent;
 	FItemDrop itemDropEvent;
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
-	TArray<struct FMyItemInfo> _items;
+	TArray<AMyItem*> _items;
 };

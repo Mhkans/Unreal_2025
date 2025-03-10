@@ -43,7 +43,6 @@ public:
 		UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep,
 		const FHitResult& SweepResult);
 	const FMyItemInfo& GetInfo() { return _info; }
-	void SetInfo(FMyItemInfo info) { _info = info; }
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Item", meta = (AllowprivateAccess = "true"))
 	int32 _healValue = 15;

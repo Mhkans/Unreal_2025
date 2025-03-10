@@ -1,6 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "MyItem.h"
 #include "MyInvenComponent.h"
 
 // Sets default values for this component's properties
@@ -37,7 +37,7 @@ int32 UMyInvenComponent::GetArraySize()
 {
 	int32 count = 0;
 	for (auto item : _items) {
-		if (item.itemId != -1 && item.type != MyItemType::NONE) {
+		if (item != nullptr) {
 			count++;
 		}
 	}
@@ -45,46 +45,53 @@ int32 UMyInvenComponent::GetArraySize()
 	
 }
 
-
-
-void UMyInvenComponent::AddItem(int32 itemID, MyItemType type)
+int32 UMyInvenComponent::EmptyIndex()
 {
-	FMyItemInfo Addinfo;
-	Addinfo.itemId = itemID;
-	Addinfo.type = type;
+	int32 index = 0;
+	for (auto item : _items) {
+		if (item == nullptr) {
+			break;
+		}
+		index++;
+	}
+	return index;
+}
 
-	auto target = _items.FindByPredicate([](FMyItemInfo info) {
-		return info.itemId == -1 && info.type == MyItemType::NONE;
+
+
+void UMyInvenComponent::AddItem(AMyItem* item)
+{
+	auto target = _items.FindByPredicate([](AMyItem* here) {
+		return here == nullptr;
 	});
 	if (target == nullptr) {
 		return;
 	}
-
-	*target = Addinfo;
-	int64 targetIndex = 0;
-
-	int64 temp1 = (int64)target;
-	int64 temp2 = (int64)(& _items[0]);
-	targetIndex = (temp1 - temp2) / sizeof(int64);
-	itemAddEvent.Broadcast(targetIndex,*target);
+	int32 index = EmptyIndex();
+	_items[index] = item;
+	itemAddEvent.Broadcast(index, item->GetInfo());
 }
 
-FMyItemInfo UMyInvenComponent::DropItem()
+AMyItem* UMyInvenComponent::DropItem()
 {
-	int32 arrayIndex = GetArraySize()-1;
-	auto temp = _items[arrayIndex];
-	FMyItemInfo defaultInfo;
-	_items[arrayIndex] = defaultInfo;
-	itemDropEvent.Broadcast(arrayIndex, defaultInfo);
-	return temp;
+	int32 plus = 0;
+	for (int i = 0; i < GetArraySize(); i++) {
+		if (_items[i] == nullptr) {
+			plus++;
+		}
+	}
+	int32 arrayIndex = GetArraySize() + plus -1;
+	AMyItem* dropItem = _items[arrayIndex];
+	_items[arrayIndex] = nullptr;
+	itemDropEvent.Broadcast(arrayIndex);
+	return dropItem;
 }
 
-FMyItemInfo UMyInvenComponent::DropItem(int32 index)
+AMyItem* UMyInvenComponent::DropItem(int32 index)
 {
-	auto temp = _items[index];	
-	FMyItemInfo defaultInfo;
-	_items[index] = defaultInfo;
-	itemDropEvent.Broadcast(index, defaultInfo);
-	return temp;
+	AMyItem* dropItem = _items[index];
+	_items[index] = nullptr;
+	itemDropEvent.Broadcast(index);
+	return dropItem;
 }
 

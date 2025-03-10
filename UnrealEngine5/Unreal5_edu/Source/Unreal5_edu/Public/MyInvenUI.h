@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "MyItem.h"
+#include "MyInvenComponent.h"
 #include "MyInvenUI.generated.h"
 
 /**
@@ -18,7 +19,11 @@ public:
 	virtual bool Initialize() override;
 	virtual void NativeConstruct() override;
 	void SetItem_Index(int32 index, FMyItemInfo info);
+	void SetItem_Default(int32 index);
 
+	int32 GetArraySize();
+	void AddItem(AMyItem* item) { return _myInvenComponent->AddItem(item); }
+	AMyItem* DropItem();
 	UPROPERTY(Editanywhere,BlueprintReadWrite,meta = (BindWidget))
 	class UUniformGridPanel* Grid; //에디터와 이름이 일치해야함
 	UPROPERTY(Editanywhere, BlueprintReadWrite, meta = (BindWidget))
@@ -33,13 +38,12 @@ public:
 	UTexture2D* _defaultTexture;
 
 	int32 _curIndex = -1;
+
+	void SetComponenet(UMyInvenComponent* component) { _myInvenComponent = component; }
+	UMyInvenComponent* GetComponent() { return _myInvenComponent; }
 private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
+	class UMyInvenComponent* _myInvenComponent;
 
 };
-/*
-버튼을 클릭하면 void void 함수포인터 불러와야함
 
-버튼의 인덱스를 아는방법 
-각버튼의 인덱스 = 배열의 인덱스
-
-*/

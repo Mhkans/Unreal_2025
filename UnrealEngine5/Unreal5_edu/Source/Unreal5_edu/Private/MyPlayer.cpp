@@ -38,20 +38,19 @@ AMyPlayer::AMyPlayer()
 	if (invenClass.Succeeded()) {
 		_invenWidget = CreateWidget<UUserWidget>(GetWorld(),invenClass.Class);
 	}
-
-	_myInvenComponent = CreateDefaultSubobject<UMyInvenComponent>(TEXT("InvenComponent"));
-	
+	auto invenUI = Cast<UMyInvenUI>(_invenWidget);
+	if (invenUI) {
+		invenUI->SetComponenet(CreateDefaultSubobject<UMyInvenComponent>(TEXT("InvenComponent")));
+		invenUI->Drop->OnClicked.AddDynamic(this, &AMyPlayer::Drop_Button);
+		invenUI->GetComponent()->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
+		invenUI->GetComponent()->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Default);
+	}
 }
 
 void AMyPlayer::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
-	auto invenUI = Cast<UMyInvenUI>(_invenWidget);
-	if (invenUI) {
-		_myInvenComponent->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
-		_myInvenComponent->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
-		invenUI->Drop->OnClicked.AddDynamic(this, &AMyPlayer::Drop_Button);
-	}
+	
 }
 
 void AMyPlayer::BeginPlay()
@@ -135,17 +134,19 @@ void AMyPlayer::Attack(const FInputActionValue& value)
 void AMyPlayer::Drop(const FInputActionValue& value)
 {
 	if (_isAttack) { return; }
-	if (_myInvenComponent->GetArraySize() <= 0) {
+	if (GetArraySize() <= 0) {
 		return;
 	}
+	auto inven = Cast<UMyInvenUI>(_invenWidget);
 	bool isPressed = value.Get<bool>();
 	if (Controller != nullptr && isPressed) {
-		auto itemInfo = _myInvenComponent->DropItem();
-		FVector spawnLocation = SpawnItem();
-
-		AMyItem* newItem = GetWorld()->SpawnActor<AMyItem>(AMyItem::StaticClass(), spawnLocation, GetActorRotation());
-		newItem->SetInfo(itemInfo);
-		
+		if (inven) {
+			auto item = inven->DropItem();
+			FVector spawnLocation = SpawnItemPos();
+			item->SetActorLocation(spawnLocation);
+			item->SetActorHiddenInGame(false);
+			item->SetActorEnableCollision(true);
+		}
 	}
 }
 
@@ -175,17 +176,18 @@ void AMyPlayer::InvenOpen(const FInputActionValue& value)
 
 void AMyPlayer::AddItem(AMyItem* item)
 {
-	if (item && _myInvenComponent) {
-		_myInvenComponent->AddItem(item->GetInfo().itemId, item->GetInfo().type);
+	auto inven = Cast<UMyInvenUI>(_invenWidget);
+	if (item && inven) {
+		inven->AddItem(item);
 	}
 }
 
-FVector AMyPlayer::SpawnItem()
+FVector AMyPlayer::SpawnItemPos()
 {
 	FVector playerPos = GetActorLocation();
 
 	float minDistance = 100.0f;
-	float maxDistance = 500.0f;
+	float maxDistance = 300.0f;
 
 	float SpawnDistance = FMath::RandRange(minDistance, maxDistance);
 	float SpawnAngle = FMath::RandRange(0.0f, 360.0f);
@@ -199,17 +201,26 @@ FVector AMyPlayer::SpawnItem()
 
 }
 
+int32 AMyPlayer::GetArraySize()
+{	
+	auto inven = Cast<UMyInvenUI>(_invenWidget);
+	return inven->GetArraySize();
+}
+
 void AMyPlayer::Drop_Button()
 {
 	if (_isAttack) { return; }
-	if (_myInvenComponent->GetArraySize() <= 0) {
+	if (GetArraySize() <= 0) {
 		return;
 	}
-	auto itemInfo = _myInvenComponent->DropItem();
-	FVector spawnLocation = SpawnItem();
-
-	AMyItem* newItem = GetWorld()->SpawnActor<AMyItem>(AMyItem::StaticClass(), spawnLocation, GetActorRotation());
-	newItem->SetInfo(itemInfo);
+	auto inven = Cast<UMyInvenUI>(_invenWidget);
+	if (inven) {
+		auto item = inven->DropItem();
+		FVector spawnLocation = SpawnItemPos();
+		item->SetActorLocation(spawnLocation);
+		item->SetActorHiddenInGame(false);
+		item->SetActorEnableCollision(true);
+	}
 }
 
 

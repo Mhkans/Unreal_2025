@@ -37,14 +37,14 @@ public:
 
 
 	void AddItem(class AMyItem* item);
-	FVector SpawnItem();
+	FVector SpawnItemPos();
 	UFUNCTION()
 	
 
 	float My_Vertical() { return _vertical; }
 	float My_Horizontal() { return _horizontal; }
 
-	int32 GetArraySize() { return _myInvenComponent->GetArraySize(); }
+	int32 GetArraySize();
 
 	UFUNCTION()
 	void Drop_Button();
@@ -75,12 +75,10 @@ private:
 	UPROPERTY()
 	class UMyAnimInstance* _animInstance;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
-	class UMyInvenComponent* _myInvenComponent;
-
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
 	class UUserWidget* _invenWidget;
-
+	
 private:
 	int32 _curAttackSection = 1;
 

@@ -3,15 +3,12 @@
 
 #include "MyInvenUI.h"
 #include "MyButton.h"
+#include "MyInvenComponent.h"
 #include "Components/UniformGridPanel.h"
 #include "Components/Button.h"
 #include "Components/Image.h"
-void UMyInvenUI::NativeConstruct()
-{
-	Super::NativeConstruct();
 
-	
-}
+
 bool UMyInvenUI::Initialize()
 {
 	Super::Initialize();
@@ -41,15 +38,42 @@ bool UMyInvenUI::Initialize()
 		return false;
 	}
 	return true;
-}
 
+	
+}
+void UMyInvenUI::NativeConstruct()
+{
+	Super::NativeConstruct();
+	
+}
 void UMyInvenUI::SetItem_Index(int32 index, FMyItemInfo info)
 {
-	if (info.itemId == -1 && info.type == MyItemType::NONE) {
-		_slotImages[index]->SetBrushFromTexture(_defaultTexture);
-	}
 	if (info.itemId == 1 && info.type == MyItemType::POTION) {
 		_slotImages[index]->SetBrushFromTexture(_potionTexture);
 	}
+}
+
+void UMyInvenUI::SetItem_Default(int32 index)
+{
+	_slotImages[index]->SetBrushFromTexture(_defaultTexture);
+}
+
+int32 UMyInvenUI::GetArraySize()
+{
+	return _myInvenComponent->GetArraySize();
+}
+
+AMyItem* UMyInvenUI::DropItem()
+{
+	if (_curIndex != -1) {
+		//특정 인덱스를 누른 경우
+		int32 temp = _curIndex;
+		_curIndex = -1;
+		return _myInvenComponent->DropItem(temp);		
+	}
+	else {
+		return _myInvenComponent->DropItem();
+	}
+	
 }
 
