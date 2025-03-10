@@ -44,6 +44,12 @@
     <Filter Include="Source\Unreal5_edu\Private">
       <UniqueIdentifier>{8C9F32CE-A29A-3036-924D-DE0E2F60DF31}</UniqueIdentifier>
     </Filter>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\BT_Task_FindRandomPos.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyAIController.cpp">
+      <Filter>Source\Unreal5_edu\Private</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Unreal5_edu\Private\MyAnimInstance.cpp">
       <Filter>Source\Unreal5_edu\Private</Filter>
     </ClCompile>
@@ -95,6 +101,12 @@
     <Filter Include="Source\Unreal5_edu\Public">
       <UniqueIdentifier>{6C1867F4-85CB-3DEF-83EF-653F5ECBABFB}</UniqueIdentifier>
     </Filter>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\BT_Task_FindRandomPos.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyAIController.h">
+      <Filter>Source\Unreal5_edu\Public</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Unreal5_edu\Public\MyAnimInstance.h">
       <Filter>Source\Unreal5_edu\Public</Filter>
     </ClInclude>
