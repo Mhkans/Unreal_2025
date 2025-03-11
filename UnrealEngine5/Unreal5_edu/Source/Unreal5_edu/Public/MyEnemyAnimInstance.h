@@ -28,6 +28,8 @@ public:
 	void AnimNotify_Attack_Hit();
 	UFUNCTION()
 	void AnimNotify_Dead_Motion();
+	void JumpToSection(int32 sectionIndex);
+	
 	FSendAttackerInfo OnSendAttackerInfo;
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))

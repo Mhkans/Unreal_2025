@@ -10,6 +10,8 @@
  * 
  */
 
+//DECLARE_MULTICAST_DELEGATE()
+
 UCLASS()
 class UNREAL5_EDU_API AMyEnemy : public AMyCharacter
 {
@@ -23,7 +25,8 @@ private:
 	void PlayDeadMotion();
 
 public:
-
+	void Attack_AI();
+	
 private:
 	UPROPERTY()
 	class UMyEnemyAnimInstance* _animInstance;

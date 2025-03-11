@@ -21,7 +21,7 @@ AMyCharacter::AMyCharacter()
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
-	//ºí·çÇÁ¸°Æ®¿¡¼­ ½ºÄÌ·¹Å»¸Þ½Ã
+	//ë¸”ë£¨í”„ë¦°íŠ¸ì—ì„œ ìŠ¤ì¼ˆë ˆíƒˆë©”ì‹œ
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0, 0, -88), FRotator(0, -90, 0));
 
 	_statComponent = CreateDefaultSubobject<UMyStatComponent>(TEXT("Stat"));
@@ -46,23 +46,23 @@ void AMyCharacter::Attack_Hit()
 	FCollisionQueryParams params(NAME_None, false, this);
 
 	FVector forward = GetActorForwardVector();
-	FQuat quat = FQuat::FindBetweenVectors(FVector(0, 0, 1), forward);//µÎ º¤ÅÍ »çÀÌÀÇ ÃÖ´ÜÈ¸ÀüÀ» ¹ÝÈ¯
+	FQuat quat = FQuat::FindBetweenVectors(FVector(0, 0, 1), forward);//ë‘ ë²¡í„° ì‚¬ì´ì˜ ìµœë‹¨íšŒì „ì„ ë°˜í™˜
 
-	float attackRange = 500.0f;
+	
 	float attackRadius = 100.0f;
 
-	//start ¿¡¼­ end±îÁö ¾µ°í Áö³ª°¡´Â ÇüÅÂÀÇ Ãæµ¹ ÆÇÁ¤
-	FVector Center = GetActorLocation() + forward * attackRange * 0.5f; //¹Ù¶óº¸´Â ¹æÇâÀÇ Áß½É¼³Á¤
-	FVector Start = GetActorLocation() + forward * attackRange * 0.5f; //Ãæµ¹Ã¼ÀÇ Áß½É start
-	FVector End = GetActorLocation() + forward * attackRange * 0.5f; //Ãæµ¹Ã¼ÀÇ Áß½É end
+	//start ì—ì„œ endê¹Œì§€ ì“¸ê³  ì§€ë‚˜ê°€ëŠ” í˜•íƒœì˜ ì¶©ëŒ íŒì •
+	FVector Center = GetActorLocation() + forward * _attackRange * 0.5f; //ë°”ë¼ë³´ëŠ” ë°©í–¥ì˜ ì¤‘ì‹¬ì„¤ì •
+	FVector Start = GetActorLocation() + forward * _attackRange * 0.5f; //ì¶©ëŒì²´ì˜ ì¤‘ì‹¬ start
+	FVector End = GetActorLocation() + forward * _attackRange * 0.5f; //ì¶©ëŒì²´ì˜ ì¤‘ì‹¬ end
 
-	bool bResult = GetWorld()->SweepSingleByChannel( //¸ÖÆ¼Ã¤³Î·Î º¯°æÇØµµµÊ
+	bool bResult = GetWorld()->SweepSingleByChannel( //ë©€í‹°ì±„ë„ë¡œ ë³€ê²½í•´ë„ë¨
 		OUT hitResult,
 		Start,
 		End,
 		quat,
 		ECC_GameTraceChannel2,
-		FCollisionShape::MakeCapsule(attackRadius, attackRange *0.5f),
+		FCollisionShape::MakeCapsule(attackRadius, _attackRange *0.5f),
 		params
 	);
 
@@ -86,7 +86,7 @@ void AMyCharacter::Attack_Hit()
 	DrawDebugCapsule(
 		GetWorld(),
 		Center,
-		attackRange * 0.5f,
+		_attackRange * 0.5f,
 		attackRadius,
 		quat,
 		drawColor,
@@ -100,6 +100,7 @@ void AMyCharacter::DeadEvent()
 {
 	SetActorHiddenInGame(true);
 	SetActorEnableCollision(false);
+	Controller->UnPossess(); //ì‚¬ë§ì‹œ ì»¨íŠ¸ë¡¤ëŸ¬ í•´ì œ
 }
 
 void AMyCharacter::AttackEnd(UAnimMontage* montage, bool bInterrupted)
@@ -109,7 +110,7 @@ void AMyCharacter::AttackEnd(UAnimMontage* montage, bool bInterrupted)
 
 float AMyCharacter::TakeDamage(float Damage, FDamageEvent const& DamageEvent, AController* EventInstigator, AActor* DamageCauser)
 {
-	//¹æ¾î·Â ´Ù ±ð°í ½ÇÁ¦ÀÔÀ» µ¥¹ÌÁö ¹ÝÈ¯
+	//ë°©ì–´ë ¥ ë‹¤ ê¹Žê³  ì‹¤ì œìž…ì„ ë°ë¯¸ì§€ ë°˜í™˜
 	_statComponent->AddCurHp(-Damage);
 	
 	auto attackerController = Cast<AMyPlayerController>(EventInstigator);

@@ -63,6 +63,16 @@ void AMyEnemy::PlayDeadMotion()
 	_animInstance->PlayAnimMontage_Dead();
 }
 
+void AMyEnemy::Attack_AI()
+{
+	if (_isAttack) { return; }
+	_isAttack = true;
+	_curAttackSection = (_curAttackSection) % 3 + 1;
+	_animInstance->PlayAnimMontage_Attack();
+	_animInstance->JumpToSection(_curAttackSection);
+
+}
+
 
 
 

@@ -80,8 +80,7 @@ private:
 	class UUserWidget* _invenWidget;
 	
 private:
-	int32 _curAttackSection = 1;
-
+	
 	float _vertical = 0.0f;
 	float _horizontal = 0.0f;
 

@@ -54,7 +54,9 @@ void UMyEnemyAnimInstance::AnimNotify_Dead_Motion()
 	_enemy->SetActorHiddenInGame(true);
 	_enemy->SetActorEnableCollision(false);
 }
-/*
-캐릭터tick에서 체력 감시하다 0아래로떨어지면 애님인스턴스에바인딩해둔 데드모션실행
-데드모션실행되면 노티파이해둔 지점에서 사라지게 
-*/
+
+void UMyEnemyAnimInstance::JumpToSection(int32 sectionIndex)
+{
+	FName sectionName = FName(*FString::Printf(TEXT("Section%d"), sectionIndex));
+	Montage_JumpToSection(sectionName, _animMontage_Attack);
+}

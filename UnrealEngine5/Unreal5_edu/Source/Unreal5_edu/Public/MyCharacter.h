@@ -31,16 +31,21 @@ public:
 	const int16& GetLevel() { return _level; }
 
 	bool IsDead();
+	bool IsAttacking() { return _isAttack; }
+
+	float AttackRange() { return _attackRange; }
 protected:
-	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowprivateAccess = "true"))
-	bool _isAttack = false;
+		
 
 	UPROPERTY()
 	int16 _level;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
+	bool _isAttack;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stat", meta = (AllowprivateAccess = "true"))
 	class UMyStatComponent* _statComponent;
-
-
+	int32 _curAttackSection = 1;
+	UPROPERTY(EditAnywhere)
+	float _attackRange = 500.0f;
 };
