@@ -16,6 +16,7 @@
 #include "Components/WidgetComponent.h"
 #include "MyHPBar.h"
 #include "MyPlayerController.h"
+#include "MyEffect.h"
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
@@ -75,6 +76,9 @@ void AMyCharacter::Attack_Hit()
 		if (victim) {
 			FDamageEvent damageEvent;
 			UE_LOG(LogTemp, Warning, TEXT("Att Name : %s , HP : %d"), *GetName(), _statComponent->GetCurHp());
+
+			FVector hitPoint = hitResult.ImpactPoint;
+			GetWorld()->SpawnActor<AMyEffect>(hitPoint,FRotator::ZeroRotator);
 
 			victim->TakeDamage(_statComponent->GetAtk(), damageEvent, GetController(), this);
 			if (victim->_statComponent->IsDead()) {
