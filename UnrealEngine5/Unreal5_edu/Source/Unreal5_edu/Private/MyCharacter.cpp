@@ -17,6 +17,7 @@
 #include "MyHPBar.h"
 #include "MyPlayerController.h"
 #include "MyEffect.h"
+#include "MyGameInstance.h"
 // Sets default values
 AMyCharacter::AMyCharacter()
 {
@@ -78,8 +79,7 @@ void AMyCharacter::Attack_Hit()
 			UE_LOG(LogTemp, Warning, TEXT("Att Name : %s , HP : %d"), *GetName(), _statComponent->GetCurHp());
 
 			FVector hitPoint = hitResult.ImpactPoint;
-			GetWorld()->SpawnActor<AMyEffect>(hitPoint,FRotator::ZeroRotator);
-
+			EFFECT_M->PlayEffect("BigFire", hitPoint);
 			victim->TakeDamage(_statComponent->GetAtk(), damageEvent, GetController(), this);
 			if (victim->_statComponent->IsDead()) {
 				TakeEXP(victim);

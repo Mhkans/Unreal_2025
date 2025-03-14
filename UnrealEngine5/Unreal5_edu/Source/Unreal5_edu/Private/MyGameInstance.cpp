@@ -4,6 +4,7 @@
 #include "MyGameInstance.h"
 #include "MyStatComponent.h"
 #include "Engine/DataTable.h"
+#include "MyEffectManager.h"
 UMyGameInstance::UMyGameInstance()
 {
 	static ConstructorHelpers::FObjectFinder<UDataTable> dataTable(TEXT("/Script/Engine.DataTable'/Game/Data/MyDataTable.MyDataTable'"));
@@ -16,7 +17,7 @@ UMyGameInstance::UMyGameInstance()
 void UMyGameInstance::Init()
 {
 	Super::Init();
-	
+	_effectManager = GetWorld()->SpawnActor<AMyEffectManager>(FVector::ZeroVector, FRotator::ZeroRotator);
 }
 
 FMyStatData UMyGameInstance::GetStat_Level(int32 level)

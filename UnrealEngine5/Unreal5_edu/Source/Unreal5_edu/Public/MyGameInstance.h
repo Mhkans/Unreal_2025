@@ -10,6 +10,8 @@
 /**
  * 
  */
+#define EFFECT_M() Cast<UMyGameInstance>(GetGameInstance())->EffectManager()
+
 UCLASS()
 class UNREAL5_EDU_API UMyGameInstance : public UGameInstance
 {
@@ -19,7 +21,11 @@ public:
 	virtual void Init() override;
 
 	FMyStatData GetStat_Level(int32 level);
+	class AMyEffectManager* EffectManager() { return _effectManager; }
+
 private:
 	UPROPERTY()
 	class UDataTable* _statTable;
+	UPROPERTY()
+	class AMyEffectManager* _effectManager;
 };
