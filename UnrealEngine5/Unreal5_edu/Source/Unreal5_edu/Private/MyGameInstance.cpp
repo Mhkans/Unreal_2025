@@ -3,8 +3,8 @@
 
 #include "MyGameInstance.h"
 #include "MyStatComponent.h"
-#include "Engine/DataTable.h"
 #include "MyEffectManager.h"
+#include "Engine/DataTable.h"
 UMyGameInstance::UMyGameInstance()
 {
 	static ConstructorHelpers::FObjectFinder<UDataTable> dataTable(TEXT("/Script/Engine.DataTable'/Game/Data/MyDataTable.MyDataTable'"));

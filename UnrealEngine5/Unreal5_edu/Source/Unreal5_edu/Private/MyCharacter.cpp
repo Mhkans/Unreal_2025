@@ -17,6 +17,7 @@
 #include "MyHPBar.h"
 #include "MyPlayerController.h"
 #include "MyEffect.h"
+#include "MyEffectManager.h"
 #include "MyGameInstance.h"
 // Sets default values
 AMyCharacter::AMyCharacter()
@@ -75,7 +76,7 @@ void AMyCharacter::Attack_Hit()
 		drawColor = FColor::Red;
 		AMyCharacter* victim = Cast<AMyCharacter>(hitResult.GetActor());
 		if (victim) {
-			FDamageEvent damageEvent;
+			FDamageEvent damageEvent = FDamageEvent();
 			UE_LOG(LogTemp, Warning, TEXT("Att Name : %s , HP : %d"), *GetName(), _statComponent->GetCurHp());
 
 			FVector hitPoint = hitResult.ImpactPoint;

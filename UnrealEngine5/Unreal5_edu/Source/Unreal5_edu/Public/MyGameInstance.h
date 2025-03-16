@@ -10,8 +10,7 @@
 /**
  * 
  */
-#define EFFECT_M() Cast<UMyGameInstance>(GetGameInstance())->EffectManager()
-
+#define EFFECT_M Cast<UMyGameInstance>(GetGameInstance())->EffectManager()
 UCLASS()
 class UNREAL5_EDU_API UMyGameInstance : public UGameInstance
 {

@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "MyEffectManager.h"
 #include "MyEffect.h"
+#include "MyEffectManager.h"
 #include "NiagaraSystem.h"
 // Sets default values
 AMyEffectManager::AMyEffectManager()
@@ -13,10 +13,10 @@ AMyEffectManager::AMyEffectManager()
 	RootComponent = CreateDefaultSubobject<USceneComponent>("RootComponent");
 	static ConstructorHelpers::FObjectFinder<UNiagaraSystem>particle(TEXT("/Script/Niagara.NiagaraSystem'/Game/Graphics/Effect/Vefects/Free_Fire/Shared/Particles/NS_Fire_Big_Simple.NS_Fire_Big_Simple'"));
 	if (particle.Succeeded()) {
-		_particleTable.Add(TEXT("BigFire")); //언리얼에서는 키값을 한번 넣어줘야한다
-		_particleTable[TEXT("BigFire")] = particle.Object;
+		//_particleTable.Add(TEXT("BigFire")); //언리얼에서는 키값을 한번 넣어줘야한다
+		//_particleTable[TEXT("BigFire")] = particle.Object;
 
-		//_particleTable.Add(TEXT("BigFire"),particle.Object); 한번에 하는방법
+		_particleTable.Add(TEXT("BigFire"),particle.Object); //한번에 하는방법
 	}
 }
 

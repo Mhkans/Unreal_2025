@@ -34,6 +34,6 @@ public:
  private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
 	TMap < FString, class UNiagaraSystem* > _particleTable;
-	UPROPERTY(VisibleAnywhere)
+	UPROPERTY()
 	TMap<FString, FEffects> _effectTable;
 };

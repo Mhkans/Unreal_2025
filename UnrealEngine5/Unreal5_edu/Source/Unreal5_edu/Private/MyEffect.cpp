@@ -58,5 +58,6 @@ bool AMyEffect::IsActive()
 
 void AMyEffect::Finished(UNiagaraComponent* PSystem)
 {
+	PSystem->DeactivateImmediate();
 }
 
