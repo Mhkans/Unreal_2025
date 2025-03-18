@@ -80,7 +80,7 @@ void AMyCharacter::Attack_Hit()
 			UE_LOG(LogTemp, Warning, TEXT("Att Name : %s , HP : %d"), *GetName(), _statComponent->GetCurHp());
 
 			FVector hitPoint = hitResult.ImpactPoint;
-			EFFECT_M->PlayEffect("BigFire", hitPoint);
+			EFFECT_M->PlayEffect("MeleeAttack", hitPoint);
 			victim->TakeDamage(_statComponent->GetAtk(), damageEvent, GetController(), this);
 			if (victim->_statComponent->IsDead()) {
 				TakeEXP(victim);

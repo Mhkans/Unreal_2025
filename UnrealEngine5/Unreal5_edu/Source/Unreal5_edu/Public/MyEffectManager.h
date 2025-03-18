@@ -31,9 +31,12 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 	void PlayEffect(FString key, FVector pos);
+
  private:
+	void CreateEffect(FString key, FString path);
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
-	TMap < FString, class UNiagaraSystem* > _particleTable;
+	TMap < FString, class UFXSystemAsset* > _particleTable; //UFXSystemAsset ->파티클시스템과 나이아가라 모두 사용가능하게
 	UPROPERTY()
 	TMap<FString, FEffects> _effectTable;
 };
