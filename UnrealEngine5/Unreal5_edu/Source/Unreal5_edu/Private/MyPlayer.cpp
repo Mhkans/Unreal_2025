@@ -21,6 +21,7 @@
 #include "MyInvenComponent.h"
 #include "MyPlayerController.h"
 #include "Components/Button.h"
+#include "MyProjectile.h"
 AMyPlayer::AMyPlayer()
 {
 	_level = 3;
@@ -129,6 +130,12 @@ void AMyPlayer::Attack(const FInputActionValue& value)
 		_animInstance->PlayAnimMontage_Attack();
 		_animInstance->JumpToSection(_curAttackSection);
 	}
+
+	auto projectile = GetWorld()->SpawnActor<AMyProjectile>(_projectileClass.Get(),GetActorLocation() + GetActorForwardVector() * 100.0f, GetActorRotation());
+
+	projectile->FireDirection(GetActorForwardVector());
+
+
 }
 
 void AMyPlayer::Drop(const FInputActionValue& value)

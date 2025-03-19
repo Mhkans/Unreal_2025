@@ -75,6 +75,9 @@ void AMyEffect::Finished(UNiagaraComponent* PSystem)
 
 void AMyEffect::Finished_Particle(UParticleSystemComponent* PSystem)
 {
-	PSystem->DeactivateSystem();
+	if (PSystem)
+	{
+		PSystem->DeactivateSystem();
+	}
 }
 

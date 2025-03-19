@@ -79,6 +79,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Item", meta = (AllowprivateAccess = "true"))
 	class UUserWidget* _invenWidget;
 	
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Projectile", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<class AMyProjectile> _projectileClass;
 private:
 	
 	float _vertical = 0.0f;
