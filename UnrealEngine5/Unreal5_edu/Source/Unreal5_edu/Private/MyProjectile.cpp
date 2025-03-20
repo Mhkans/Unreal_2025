@@ -4,7 +4,11 @@
 #include "MyProjectile.h"
 #include "Components/MeshComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "MyEnemy.h"
+#include "MyCharacter.h"
+#include "MyPlayer.h"
 #include "GameFramework/ProjectileMovementComponent.h"
+#include "Engine/DamageEvents.h"
 // Sets default values
 AMyProjectile::AMyProjectile()
 {
@@ -24,7 +28,7 @@ AMyProjectile::AMyProjectile()
 void AMyProjectile::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	_collider->OnComponentBeginOverlap.AddDynamic(this, &ThisClass::OnOverlap);
 }
 
 // Called every frame
@@ -43,4 +47,33 @@ void AMyProjectile::FireDirection(const FVector& direction)
 {
 	_movementComponent->Velocity = direction * _movementComponent->InitialSpeed;
 }
+
+void AMyProjectile::OnOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	if (OtherActor->GetName() == _owner->GetName())
+		return;
+
+	auto victim = Cast<AMyCharacter>(OtherActor);
+	if (victim)
+	{
+		FDamageEvent dEvent;
+		victim->TakeDamage(50, dEvent, _owner->GetController(), _owner);
+
+		SetActorHiddenInGame(true);
+		SetActorEnableCollision(false);
+	}
+}
+
+
+void AMyProjectile::SetOwner(AMyCharacter* owner)
+{
+	if (owner == nullptr)
+	{
+		_owner = nullptr;
+		return;
+	}
+
+	_owner = owner;
+}
+
 

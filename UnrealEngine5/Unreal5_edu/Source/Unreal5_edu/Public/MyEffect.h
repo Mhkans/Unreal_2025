@@ -30,6 +30,7 @@ public:
 	bool IsActive();
 	UFUNCTION()
 	void Finished(class UNiagaraComponent* PSystem);
+	UFUNCTION()
 	void Finished_Particle(class UParticleSystemComponent* PSystem);
 private:
 

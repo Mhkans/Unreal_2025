@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "MyEffect.h"
+
 #include "MyEffectManager.generated.h"
 
 USTRUCT()
