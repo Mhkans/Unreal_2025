@@ -50,6 +50,9 @@ public:
 
 	UFUNCTION()
 	void Drop_Button();
+
+	bool _isTurnLeft = false;
+	bool _isTurnRight = false;
 private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input", meta = (AllowprivateAccess = "true"))
 	class UInputAction* _moveAction;
@@ -90,4 +93,5 @@ private:
 	float _horizontal = 0.0f;
 
 	bool _isInvenOpen = false;
+
 };

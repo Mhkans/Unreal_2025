@@ -65,5 +65,7 @@ void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		auto actorRotation = _player->GetActorRotation();
 		_yaw = FMath::FindDeltaAngleDegrees(actorRotation.Yaw, controlRoation.Yaw);
 		_pitch = FMath::FindDeltaAngleDegrees(actorRotation.Pitch, controlRoation.Pitch);
+		_isTurnLeft = _player->_isTurnLeft;
+		_inTurnRight = _player->_isTurnRight;
 	}
 }

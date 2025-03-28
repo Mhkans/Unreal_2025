@@ -120,15 +120,19 @@ void AMyPlayer::Look(const FInputActionValue& value)
 
 		float degree = FMath::FindDeltaAngleDegrees(GetActorRotation().Yaw, GetControlRotation().Yaw);
 		if (degree > 90.0f) {
+			_isTurnRight = true;
 			GetCharacterMovement()->bUseControllerDesiredRotation = true;
 		}
 		else if (degree < -90.0f) {
+			_isTurnLeft = true;
 			GetCharacterMovement()->bUseControllerDesiredRotation = false;
 		}
 		else if (GetCharacterMovement()->Velocity.Size() > 0.1f || _isAttack) {
 			GetCharacterMovement()->bUseControllerDesiredRotation = true;
 		}
-		else {
+		else if(FMath::Abs(degree) < 0.01f){
+			_isTurnLeft = false;
+			_isTurnRight = false;
 			GetCharacterMovement()->bUseControllerDesiredRotation = false;
 
 		}

@@ -79,7 +79,12 @@ private:
 	bool _isAttacking = false;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
-	float _yaw = false;
+	float _yaw = 0.0f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
-	float _pitch = false;
+	float _pitch = 0.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
+	bool _isTurnLeft = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
+	bool _inTurnRight = false;
 };
