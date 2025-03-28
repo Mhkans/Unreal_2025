@@ -9,12 +9,12 @@
 /**
  * 
  */
-//void(void) ÇÏ³ª¸¸(ºí·çÇÁ¸°Æ® x)
+//void(void) í•˜ë‚˜ë§Œ(ë¸”ë£¨í”„ë¦°íŠ¸ x)
 DECLARE_DELEGATE(AnimDelegateTest);
-//int(int,int) (ºí·çÇÁ¸°Æ® x)
+//int(int,int) (ë¸”ë£¨í”„ë¦°íŠ¸ x)
 DECLARE_DELEGATE_RetVal_TwoParams(int32, AnimDelegateTest2, int32, int32);
 
-//´ÙÀÌ³ª¹Í ¸ÖÆ¼Ä³½ºÆ® delegate (ºí·çÇÁ¸°Æ®¿¡¼­º¼¼öÀÖÀ½) ufuctionÀÌ ºÙÀº°Íµé¸¸ °¡´É
+//ë‹¤ì´ë‚˜ë¯¹ ë©€í‹°ìºìŠ¤íŠ¸ delegate (ë¸”ë£¨í”„ë¦°íŠ¸ì—ì„œë³¼ìˆ˜ìˆìŒ) ufuctionì´ ë¶™ì€ê²ƒë“¤ë§Œ ê°€ëŠ¥
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAnimDelegateTest3);
 
 
@@ -62,9 +62,9 @@ private:
 	UPROPERTY()
 	class AMyPlayer* _player;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
 	float _vertical;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
 	float _horizontal;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Move", meta = (AllowprivateAccess = "true"))
 	float _speed = 0.0f;
@@ -74,4 +74,12 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
 	bool _isDead = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimMontage", meta = (AllowprivateAccess = "true"))
+	bool _isAttacking = false;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
+	float _yaw = false;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "AnimOffset", meta = (AllowprivateAccess = "true"))
+	float _pitch = false;
 };

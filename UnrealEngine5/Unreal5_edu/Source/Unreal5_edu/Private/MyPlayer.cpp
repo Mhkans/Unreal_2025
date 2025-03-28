@@ -27,6 +27,8 @@
 #include "MyEffect.h"
 #include "MyEffectManager.h"
 #include "MyEnemy.h"
+#include "GameFramework/CharacterMovementComponent.h"
+#include "Math/UnrealMathUtility.h"
 AMyPlayer::AMyPlayer()
 {
 	_level = 3;
@@ -51,6 +53,7 @@ AMyPlayer::AMyPlayer()
 		invenUI->GetComponent()->itemAddEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Index);
 		invenUI->GetComponent()->itemDropEvent.AddUObject(invenUI, &UMyInvenUI::SetItem_Default);
 	}
+	bUseControllerRotationYaw = false;
 }
 
 void AMyPlayer::PostInitializeComponents()
@@ -89,13 +92,14 @@ void AMyPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 void AMyPlayer::Move(const FInputActionValue& value)
 {
-	if (_isAttack) { return; }
-	
 	FVector2D moveVector = value.Get<FVector2D>();
 	if (Controller != nullptr) {
 		if (moveVector.Length() > 0.01f) {
-			FVector forWard = GetActorForwardVector();
-			FVector right = GetActorRightVector();
+			//FVector forWard = GetActorForwardVector();
+			//FVector right = GetActorRightVector();
+
+			auto forWard = GetControlRotation().Vector();
+			auto right = forWard.RotateAngleAxis(90, FVector(0.0f, 0.0f, 1.0f));
 
 			_vertical = moveVector.Y;
 			_horizontal = moveVector.X;
@@ -113,12 +117,27 @@ void AMyPlayer::Look(const FInputActionValue& value)
 	if (Controller != nullptr) {
 		AddControllerYawInput(lookAxisVector.X);
 		AddControllerPitchInput(-lookAxisVector.Y);
+
+		float degree = FMath::FindDeltaAngleDegrees(GetActorRotation().Yaw, GetControlRotation().Yaw);
+		if (degree > 90.0f) {
+			GetCharacterMovement()->bUseControllerDesiredRotation = true;
+		}
+		else if (degree < -90.0f) {
+			GetCharacterMovement()->bUseControllerDesiredRotation = false;
+		}
+		else if (GetCharacterMovement()->Velocity.Size() > 0.1f || _isAttack) {
+			GetCharacterMovement()->bUseControllerDesiredRotation = true;
+		}
+		else {
+			GetCharacterMovement()->bUseControllerDesiredRotation = false;
+
+		}
 	}
 }
 
 void AMyPlayer::JumpA(const FInputActionValue& value)
 {
-	if (_isAttack) { return; }
+
 	bool isPressed = value.Get<bool>();
 	if (Controller != nullptr && isPressed) {
 		ACharacter::Jump();

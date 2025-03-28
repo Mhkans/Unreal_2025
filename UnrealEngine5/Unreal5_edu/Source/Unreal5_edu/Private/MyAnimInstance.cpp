@@ -5,6 +5,7 @@
 #include "GameFramework/PawnMovementComponent.h"
 #include "Animation/AnimMontage.h"
 #include "MyAnimInstance.h"
+#include "Math/UnrealMathUtility.h"
 UMyAnimInstance::UMyAnimInstance()
 {
 
@@ -24,7 +25,7 @@ void UMyAnimInstance::PlayAnimMontage_Attack()
 	{
 		//_attackStart.Execute();
 		//_attackStart2.Execute(1, 2);
-		//_attackStart3.Broadcast(); //¸ÖÆ¼Ä³½ºÆ®
+		//_attackStart3.Broadcast(); //ë©€í‹°ìºìŠ¤íŠ¸
 		Montage_Play(_animMontage_Attack);
 	}
 }
@@ -42,7 +43,7 @@ void UMyAnimInstance::AnimNotify_Attack_Hit()
 
 void UMyAnimInstance::AnimNotify_Dead_Motion()
 {
-	//Á×¾úÀ»¶§ ³ª¿À´Â ÀÌº¥Æ®µé
+	//ì£½ì—ˆì„ë•Œ ë‚˜ì˜¤ëŠ” ì´ë²¤íŠ¸ë“¤
 	if (_deadEvent.IsBound()) {
 		_deadEvent.Broadcast();
 	}
@@ -58,5 +59,11 @@ void UMyAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 		_speed = _player->GetMovementComponent()->Velocity.Size2D();
 		_isFalling = _player->GetMovementComponent()->IsFalling();
 		_isDead = _player->IsDead();
+		_isAttacking = _player->IsAttacking();
+		
+		FRotator controlRoation = _player->GetControlRotation();
+		auto actorRotation = _player->GetActorRotation();
+		_yaw = FMath::FindDeltaAngleDegrees(actorRotation.Yaw, controlRoation.Yaw);
+		_pitch = FMath::FindDeltaAngleDegrees(actorRotation.Pitch, controlRoation.Pitch);
 	}
 }
